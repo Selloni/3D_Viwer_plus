@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <fstream>
+#include <iostream>
 
 typedef unsigned int unint;
 
@@ -23,7 +25,6 @@ void s21_read(char *file_name, data_t *obj);
 int s21_digit_supp(char ind);
 int s21_space_for_Fsupp(char *ch);
 unint s21_Fconnect(data_t *obj, char *ch, unint index_f);
-
 void s21_rotate(double **vertex, char xyz, double angle, unint i);
 void s21_moveX(double **vertex, double move_x, unint count_v);
 void s21_moveY(double **vertex, double move_y, unint count_v);
