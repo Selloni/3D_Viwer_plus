@@ -3,7 +3,7 @@
 
 TEST(test_open, 1) {
   data_t obj;
-  char file_path[30] = "obj/cub.obj";
+  std::string file_path = "obj/cub.obj";
   s21_count_v_f(file_path, &obj);
   s21_read(file_path, &obj);
   double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,

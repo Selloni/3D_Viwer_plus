@@ -3,14 +3,15 @@
 bool s21_count_v_f(std::string file_name, data_t *obj) {  // открыли и посчитали, сколько нам потребуется памяти
   std::ifstream text;
   std::string ch;
-  int len = ch.length();  //длина строки
+  // int len = ch.length();  //длина строки
   bool result = 0;
   text.open(file_name, std::ios::in);
   if (text.is_open()) {
     while (std::getline(text, ch)) {
-      if (ch[len - 1] == '\n') {
-        ch[--len] = 0;
-      } else if (ch[0] == 'v' && ch[1] == ' ') {  // vertex
+      // if (ch[len - 1] == '\n') {
+      //   ch[--len] = 0;
+      // std::cout << ch;
+      if (ch[0] == 'v' && ch[1] == ' ') {  // vertex
         obj->count_vert++;
       } else if (ch[0] == 'f' && ch[1] == ' ') {  // facets
         obj->count_facets += s21_space_for_Fsupp(ch);
@@ -29,7 +30,7 @@ bool s21_count_v_f(std::string file_name, data_t *obj) {  // открыли и �
 unint s21_space_for_Fsupp(std::string ch) {
   int i = 2;
   unint space_count = 1;
-  while (ch[i] != '\n' && ch[i] != EOF) {
+  while (ch[i] != '\n' && ch[i] != EOF && ch[i] != '\0') {
     if (ch[i] == ' ') {
       space_count++;
     }
@@ -38,7 +39,7 @@ unint s21_space_for_Fsupp(std::string ch) {
   return space_count;
 }
 
-void s21_read(char *file_name, data_t *obj) {
+void s21_read(std::string file_name, data_t *obj) {
   std::ifstream text;
   unint index_v = 0;
   unint index_f = 0;
