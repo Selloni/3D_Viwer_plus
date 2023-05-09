@@ -1,0 +1,12 @@
+# Debug files
+*.dSYM/
+
+# Object files
+*.o
+
+
+# Executables
+*.exe
+*.out
+*.app
+
