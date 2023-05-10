@@ -60,7 +60,6 @@ namespace s21 {
       virtual ~Model() {}
       bool s21_count_v_f(std::string file_name, DATA *obj);
       void s21_read(std::string file_name, DATA *obj);
-      virtual void s21_rotate(double **vertex, char xyz, double angle, unint i);
       virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
       virtual void s21_scale(double **vertex, float scale, unint count_v);
 
@@ -78,7 +77,7 @@ namespace s21 {
 
   class Rotate : public Model {
     public:
-      void s21_rotate(double **vertex, char xyz, double angle, unint i) override;
+      void s21_move(double **vertex, double move, unint count_v, char direction) override;
   };
 
   class Scale : public Model {

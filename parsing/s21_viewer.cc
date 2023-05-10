@@ -106,11 +106,12 @@ int Model::s21_digit_supp(char ind) {
   return result;
 }
 
-void Rotate::s21_rotate(double **vertex, char xyz, double angle, unint count_v) {
+// поменялись местами аргументы, теперь направление передается последним аргументом, остальное в таком же порядке
+void Rotate::s21_move(double **vertex, double move, unint count_v, char direction) {
   double temp_x = 0.0;
   double temp_y = 0.0;
   double temp_z = 0.0;
-  switch (xyz) {
+  switch (direction) {
     case 'x':
       for (unint i = 0; i < count_v * 3; i += 3) {
         temp_x = (*vertex)[i];
@@ -118,8 +119,8 @@ void Rotate::s21_rotate(double **vertex, char xyz, double angle, unint count_v) 
         temp_z = (*vertex)[i + 2];
 
         (*vertex)[i] = temp_x;
-        (*vertex)[i + 1] = cos(angle) * temp_y - sin(angle) * temp_z;
-        (*vertex)[i + 2] = sin(angle) * temp_y + cos(angle) * temp_z;
+        (*vertex)[i + 1] = cos(move) * temp_y - sin(move) * temp_z;
+        (*vertex)[i + 2] = sin(move) * temp_y + cos(move) * temp_z;
       }
       break;
     case 'y':
@@ -128,9 +129,9 @@ void Rotate::s21_rotate(double **vertex, char xyz, double angle, unint count_v) 
         temp_y = (*vertex)[i + 1];
         temp_z = (*vertex)[i + 2];
 
-        (*vertex)[i] = cos(angle) * temp_x + sin(angle) * temp_z;
+        (*vertex)[i] = cos(move) * temp_x + sin(move) * temp_z;
         (*vertex)[i + 1] = temp_y;
-        (*vertex)[i + 2] = -sin(angle) * temp_x + cos(angle) * temp_z;
+        (*vertex)[i + 2] = -sin(move) * temp_x + cos(move) * temp_z;
       }
       break;
     case 'z':
@@ -139,8 +140,8 @@ void Rotate::s21_rotate(double **vertex, char xyz, double angle, unint count_v) 
         temp_y = (*vertex)[i + 1];
         temp_z = (*vertex)[i + 2];
 
-        (*vertex)[i] = cos(angle) * temp_x - sin(angle) * temp_y;
-        (*vertex)[i + 1] = sin(angle) * temp_x + cos(angle) * temp_y;
+        (*vertex)[i] = cos(move) * temp_x - sin(move) * temp_y;
+        (*vertex)[i + 1] = sin(move) * temp_x + cos(move) * temp_y;
         (*vertex)[i + 2] = temp_z;
       }
       break;
