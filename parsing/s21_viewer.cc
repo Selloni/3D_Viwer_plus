@@ -40,7 +40,7 @@ using namespace std;
 
 void s21_read(std::string file_name, data_t *obj) {
   std::ifstream text;
-  int index_v = 0;
+  unint index_v = 0;
   unint index_f = 0;
   std::string ch;
   std::string tmp;
@@ -55,6 +55,7 @@ void s21_read(std::string file_name, data_t *obj) {
             while(std::getline(os_tream, tmp, ' ')){
               if (tmp == "v") {
                 continue;
+              } else {
               obj->vertexes[index_v] = std::stod(tmp);
               ++index_v;
               }
@@ -68,20 +69,23 @@ void s21_read(std::string file_name, data_t *obj) {
 }
 
 unint s21_Fconnect(data_t *obj, std::string ch, unint index_f) {
-  int closure_val = '\0';  // для замыкания полигона
+  cout << "ch: " << ch << "\n";
+  int closure_val{};  // для замыкания полигона
   int i_flag = 0;  // порядковый номер записанного числа
-  for (unint i = 0; i < ch.length(); i++) {
-    long int val = 0;  // для дублирования чисел
-    if (ch[i] == ' ' && s21_digit_supp(ch[i++])) {
+  for (unint i = 0; i < ch.length(); ++i) {
+    char c = ch[i];
+    unint val = 0;  // для дублирования чисел
+    if (ch[i] == ' ' && s21_digit_supp(ch[i+1])) {
       ++i_flag;
-      char str[10] = {'\0'};
+      std::string str{};
       int j = 0;
-      while (s21_digit_supp(ch[i])) {
-        str[j] = ch[i];
-        ++i;
+      while (s21_digit_supp(ch[++i])) {
+        char s = ch[i];
+        str.push_back(ch[i]);
+        // ++i;
         ++j;
       }
-      val = std::stod(str) - 1;
+      val = std::stod(str);
       obj->facets[index_f] = val;
       cout << obj->facets[index_f] << "\n";
       if (i_flag == 1) {

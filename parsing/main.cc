@@ -15,7 +15,7 @@ int main () {
     std::cout << "my::" << obj.vertexes[i]<< "  test::" << vertex[i] << '\n';
   }
   for (int i = 0 ; i < obj.count_facets*2; ++i) {
-    std::cout << *obj.facets;
+    std::cout << obj.facets[i];
   }
   delete(obj.facets);
   delete(obj.vertexes);
