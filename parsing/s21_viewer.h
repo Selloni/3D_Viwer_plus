@@ -61,7 +61,7 @@ namespace s21 {
       bool s21_count_v_f(std::string file_name, DATA *obj);
       void s21_read(std::string file_name, DATA *obj);
       virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
-      virtual void s21_scale(double **vertex, float scale, unint count_v);
+      // virtual void s21_scale(double **vertex, float scale, unint count_v);
 
     private:
       unint s21_space_for_Fsupp(std::string ch);
@@ -82,7 +82,7 @@ namespace s21 {
 
   class Scale : public Model {
     public:
-      void s21_scale(double **vertex, float scale, unint count_v) override;
+      void s21_move(double **vertex, double move, unint count_v) override;
   };
 
 }  // namespace s21
