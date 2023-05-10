@@ -1,11 +1,14 @@
 #include <gtest/gtest.h>
 #include "s21_viewer.h"
 
+  s21::Model pp;
+  s21::Move mv;
+
 TEST(test_open, 1) {
-  data_t obj;
+  s21::Model::data_t obj;
   std::string file_path = "obj/cub.obj";
-  s21_count_v_f(file_path, &obj);
-  s21_read(file_path, &obj);
+  pp.s21_count_v_f(file_path, &obj);
+  pp.s21_read(file_path, &obj);
   double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
@@ -19,10 +22,10 @@ TEST(test_open, 1) {
 }
 
 TEST(test_open, 2) {
-  data_t obj;
+  s21::Model::data_t obj;
   char file_path[30] = "obj/cub.obj";
-  s21_count_v_f(file_path, &obj);
-  s21_read(file_path, &obj);
+  pp.s21_count_v_f(file_path, &obj);
+  pp.s21_read(file_path, &obj);
   int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
                      5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
                      0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
@@ -36,7 +39,7 @@ TEST(test_open, 2) {
 
 
 // START_TEST(test_8) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   ck_assert_int_eq(obj.count_facets, 36);
@@ -44,7 +47,7 @@ TEST(test_open, 2) {
 // }
 
 // START_TEST(test_9) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   ck_assert_int_eq(obj.count_vert, 8);
@@ -52,11 +55,11 @@ TEST(test_open, 2) {
 // }
 
 TEST(move, 3) {
-  data_t obj ;
+  s21::Model::data_t obj ;
   char file_path[30] = "obj/cub.obj";
-  s21_count_v_f(file_path, &obj);
-  s21_read(file_path, &obj);
-  s21_moveX(&obj.vertexes, 0.9, obj.count_vert * 3);
+  pp.s21_count_v_f(file_path, &obj);
+  pp.s21_read(file_path, &obj);
+  mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
   double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
                        1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
                        -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
@@ -71,12 +74,12 @@ TEST(move, 3) {
 }
 
 // START_TEST(test_4) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   s21_read(file_path, &obj);
-//   // s21_moveX(&obj.vertexes, 0.9, obj.count_vert * 3);
-//   s21_moveY(&obj.vertexes, -1.4, obj.count_vert * 3);
+//   // s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
+//   s21_move(&obj.vertexes, -1.4, obj.count_vert * 3, 'y');
 //   double vertex_1[] = {1.000000,  -2.400000, -1.000000, 1.000000,  -2.400000,
 //                        1.000000,  -1.000000, -2.400000, 1.000000,  -1.000000,
 //                        -2.400000, -1.000000, 1.000000,  -0.400000, -0.999999,
@@ -92,11 +95,11 @@ TEST(move, 3) {
 // END_TEST
 
 // START_TEST(test_5) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   s21_read(file_path, &obj);
-//   s21_moveZ(&obj.vertexes, 2.3, obj.count_vert * 3);
+//   s21_move(&obj.vertexes, 2.3, obj.count_vert * 3, 'z');
 //   double vertex_1[] = {1.000000,  -1.000000, 1.300000,  1.000000,  -1.000000,
 //                        3.300000,  -1.000000, -1.000000, 3.300000,  -1.000000,
 //                        -1.000000, 1.300000,  1.000000,  1.000000,  1.300001,
@@ -112,7 +115,7 @@ TEST(move, 3) {
 // END_TEST
 
 // START_TEST(test_6) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   s21_read(file_path, &obj);
@@ -132,7 +135,7 @@ TEST(move, 3) {
 // END_TEST
 
 // START_TEST(test_7) {
-//   data_t obj ;
+//   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   s21_count_v_f(file_path, &obj);
 //   s21_read(file_path, &obj);
