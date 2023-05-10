@@ -52,24 +52,13 @@ void s21_read(std::string file_name, data_t *obj) {
     while (std::getline(text, ch)) {
       std::stringstream os_tream(ch);
           if (ch[0] == 'v' && ch[1] == ' ') {
-            double double_num;
-            cout << "ch:" << ch  << " " << "\n";
-            // os_tream >> tmp >> v1 >> v2 >> v3;
-            // obj->vertexes[index_v] = v1;
-            // obj->vertexes[++index_v] = v2;
-            // obj->vertexes[++index_v] = v3;
-            // ++index_v;
-                  while(std::getline(os_tream, tmp, ' ')){
-                    if (tmp == "v") {
-                      continue;
-                    } else {
-                    obj->vertexes[index_v] = std::stod(tmp);
-                    ++index_v;
-                    }
-                  }
-                  cout <<"\n";
-            cout << tmp << " " << obj->vertexes[index_v - 2] << " " << obj->vertexes[index_v -1 ] << " " << obj->vertexes[index_v];
-            cout << "\n";
+            while(std::getline(os_tream, tmp, ' ')){
+              if (tmp == "v") {
+                continue;
+              obj->vertexes[index_v] = std::stod(tmp);
+              ++index_v;
+              }
+            }
           } else if (ch[0] == 'f' && ch[1] == ' ') {
             index_f = s21_Fconnect(obj, ch, index_f);
           }
