@@ -56,14 +56,19 @@ namespace s21 {
       } data_t;
 
     public:
+      static Model& getInstance() {
+        static Model instance;
+        return instance;
+      }
       Model() {}
-      virtual ~Model() {}
+      ~Model() {}
       bool s21_count_v_f(std::string file_name, DATA *obj);
       void s21_read(std::string file_name, DATA *obj);
-      virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
       // virtual void s21_scale(double **vertex, float scale, unint count_v);
 
     private:
+      // Model() {} // приватный конструктор для Singleton
       unint s21_space_for_Fsupp(std::string ch);
       unint s21_Fconnect(DATA *obj, std::string ch, unint index_f);
       int s21_digit_supp(char ind);
@@ -72,17 +77,17 @@ namespace s21 {
 
   class Move : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
   };
 
   class Rotate : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
   };
 
   class Scale : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v) override;
+      void s21_move(double **vertex, double move, unint count_v);
   };
 
 }  // namespace s21
