@@ -1,5 +1,6 @@
 # Debug files
 *.dSYM/
+.vscode
 
 # Object files
 *.o

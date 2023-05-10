@@ -22,7 +22,7 @@ typedef struct DATA {
   // std::vector<unint> facetc;
   double *vertexes = 0;    // хранятся в, цифры
   unint *facets = 0;  // массив, в нем полигоны, эфки 122331
-}data_t;
+} data_t;
 
 ////parser
 // unint index_f;

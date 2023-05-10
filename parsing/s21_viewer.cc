@@ -46,7 +46,6 @@ void s21_read(std::string file_name, data_t *obj) {
   std::string tmp;
   obj->vertexes = new double[obj->count_vert * 3 + 1]; 
   obj->facets = new unint[obj->count_facets * 2 + 1] ;
-  double v1 = 0, v2 = 0, v3 = 0;
   text.open(file_name, std::ios::in);
   if (text.is_open()) {  // считываем построчно
     while (std::getline(text, ch)) {
@@ -69,25 +68,21 @@ void s21_read(std::string file_name, data_t *obj) {
 }
 
 unint s21_Fconnect(data_t *obj, std::string ch, unint index_f) {
-  cout << "ch: " << ch << "\n";
   int closure_val{};  // для замыкания полигона
   int i_flag = 0;  // порядковый номер записанного числа
   for (unint i = 0; i < ch.length(); ++i) {
-    char c = ch[i];
     unint val = 0;  // для дублирования чисел
     if (ch[i] == ' ' && s21_digit_supp(ch[i+1])) {
       ++i_flag;
       std::string str{};
       int j = 0;
       while (s21_digit_supp(ch[++i])) {
-        char s = ch[i];
         str.push_back(ch[i]);
         // ++i;
         ++j;
       }
-      val = std::stod(str);
+      val =( std::stod(str)) - 1;
       obj->facets[index_f] = val;
-      cout << obj->facets[index_f] << "\n";
       if (i_flag == 1) {
         closure_val = val;
         ++index_f;
