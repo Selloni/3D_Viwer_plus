@@ -12,7 +12,10 @@ int main () {
                        0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
                        1.000000,  -1.000000, 1.000000,  -1.000000};
   for (int i = 0; i < 24; i++) {
-    std::cout << obj.vertexes[i] << vertex[i] << '\n';
+    std::cout << "my::" << obj.vertexes[i]<< "  test::" << vertex[i] << '\n';
+  }
+  for (int i = 0 ; i < obj.count_facets*2; ++i) {
+    std::cout << *obj.facets;
   }
   delete(obj.facets);
   delete(obj.vertexes);

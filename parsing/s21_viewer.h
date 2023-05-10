@@ -15,10 +15,10 @@ typedef unsigned int unint;
 // using unit = unsigned int;
 
 typedef struct DATA {
-  // std::vector<unint> count_vert;    // количество v
-  // std::vector<unint> count_facets;  // количество f
   unint count_vert = 0;    // количество v
   unint count_facets = 0;  // количество f
+  // std::vector<double> vertexex;
+  // std::vector<unint> facetc;
   double *vertexes = 0;    // хранятся в, цифры
   unint *facets = 0;  // массив, в нем полигоны, эфки 122331
 }data_t;
