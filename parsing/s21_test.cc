@@ -1,14 +1,15 @@
 #include <gtest/gtest.h>
 #include "s21_viewer.h"
 
-  s21::Model pp;
+  // s21::Model pp;
   s21::Move mv;
 
 TEST(test_open, 1) {
+  s21::Model& model = s21::Model::getInstance();
   s21::Model::data_t obj;
   std::string file_path = "obj/cub.obj";
-  pp.s21_count_v_f(file_path, &obj);
-  pp.s21_read(file_path, &obj);
+  model.s21_count_v_f(file_path, &obj);
+  model.s21_read(file_path, &obj);
   double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
@@ -22,10 +23,11 @@ TEST(test_open, 1) {
 }
 
 TEST(test_open, 2) {
+  s21::Model& model = s21::Model::getInstance();
   s21::Model::data_t obj;
   char file_path[30] = "obj/cub.obj";
-  pp.s21_count_v_f(file_path, &obj);
-  pp.s21_read(file_path, &obj);
+  model.s21_count_v_f(file_path, &obj);
+  model.s21_read(file_path, &obj);
   int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
                      5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
                      0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
@@ -55,10 +57,11 @@ TEST(test_open, 2) {
 // }
 
 TEST(move, 3) {
+  s21::Model& model = s21::Model::getInstance();
   s21::Model::data_t obj ;
   char file_path[30] = "obj/cub.obj";
-  pp.s21_count_v_f(file_path, &obj);
-  pp.s21_read(file_path, &obj);
+  model.s21_count_v_f(file_path, &obj);
+  model.s21_read(file_path, &obj);
   mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
   double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
                        1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,

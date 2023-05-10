@@ -24,6 +24,10 @@ namespace s21 {
       } data_t;
 
     public:
+      static Model& getInstance() {
+        static Model instance;
+        return instance;
+      }
       Model() {}
       ~Model() {}
       bool s21_count_v_f(std::string file_name, DATA *obj);
@@ -32,6 +36,7 @@ namespace s21 {
       // virtual void s21_scale(double **vertex, float scale, unint count_v);
 
     private:
+      // Model() {} // приватный конструктор для Singleton
       unint s21_space_for_Fsupp(std::string ch);
       unint s21_Fconnect(DATA *obj, std::string ch, unint index_f);
       int s21_digit_supp(char ind);
