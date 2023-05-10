@@ -25,10 +25,10 @@ namespace s21 {
 
     public:
       Model() {}
-      virtual ~Model() {}
+      ~Model() {}
       bool s21_count_v_f(std::string file_name, DATA *obj);
       void s21_read(std::string file_name, DATA *obj);
-      virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
       // virtual void s21_scale(double **vertex, float scale, unint count_v);
 
     private:
@@ -40,17 +40,17 @@ namespace s21 {
 
   class Move : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
   };
 
   class Rotate : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+      void s21_move(double **vertex, double move, unint count_v, char direction);
   };
 
   class Scale : public Model {
     public:
-      void s21_move(double **vertex, double move, unint count_v) override;
+      void s21_move(double **vertex, double move, unint count_v);
   };
 
 }  // namespace s21
