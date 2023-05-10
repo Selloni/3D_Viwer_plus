@@ -24,9 +24,6 @@ typedef struct DATA {
   unint *facets = 0;  // массив, в нем полигоны, эфки 122331
 } data_t;
 
-////parser
-// unint index_f;
-// unint index_v;
 bool s21_count_v_f(std::string file_name, DATA *obj);
 void s21_read(std::string file_name, DATA *obj);
 int s21_digit_supp(char ind);
