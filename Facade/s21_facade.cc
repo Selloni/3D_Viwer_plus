@@ -12,3 +12,7 @@ void s21::Facade::get_value(unit &qcount_vert, unit &qcount_facets, double &qver
   qvertexes = controller_.get_arr_vertex();
   qfacets = controller_.get_arr_facets();
 }
+
+void s21::Facade::free(){
+  controller_.free();
+}

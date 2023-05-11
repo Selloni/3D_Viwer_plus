@@ -12,7 +12,7 @@ class Facade {
   public:
   bool set_path(std::string);
   void get_value(unit &qcount_vert, unit &qcount_facets, double &qvertexes, unit &qfacets);
-
+  void free();
 }; // Facade
 } // s21
 
