@@ -6,10 +6,17 @@
 
 namespace s21 {
 class Facade {
+  private:
+    Controller controller_;
+    Facade() {}
+
   public:
-  Controller controller_;
-  // MainWindow MainWindow = new MainWindow();
-  bool set_path(std::string);
+    static Facade& getInstance() {
+      static Facade instance;
+      return instance;
+    }
+    // MainWindow MainWindow = new MainWindow();
+    bool set_path(std::string);
 
 }; // Facade
 } // s21
