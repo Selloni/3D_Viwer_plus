@@ -1,5 +1,5 @@
-#ifndef SRC_S21_VIEWER_H_
-#define SRC_S21_VIEWER_H_
+#ifndef SRC_PARSING_S21_VIEWER_H_
+#define SRC_PARSING_S21_VIEWER_H_
 
 #include <cmath>
 // #include <stdio.h>
@@ -60,4 +60,4 @@ namespace s21 {
 
 }  // namespace s21
 
-#endif  // SRC_S21_VIEWER_H_
+#endif  // SRC_PARSING_S21_VIEWER_H_
