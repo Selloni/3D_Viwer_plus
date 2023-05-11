@@ -5,8 +5,9 @@
 
 namespace s21{
 class Controller {
-  s21::Model model_;
+  protected:
   s21::Model::data_t obj;
+  s21::Model model_;
   public:
   using unit = unsigned int;
   unit get_count_vertex() {return obj.count_vert;}
