@@ -11,14 +11,18 @@
   double *vertexes;
   unit *facets;
 
-  s21::Facade pp;
 
 TEST(test_open, 1) {
+  s21::Facade pp;
+  s21::Controller cc ;
   // s21::Model& model = s21::Model::getInstance();
   // s21::Model::data_t obj;
-  // std::string file_path = "obj/cub.obj";
-  pp.set_path("obj/cub.obj");
-  pp.get_value(count_vert,count_facets, *vertexes, *facets);
+  std::string file_path = "obj/cub.obj";
+  // pp.set_path("obj/cub.obj");
+  cc.set_path_file(file_path);
+  facets = cc.get_arr_facets();
+  vertexes = cc.get_arr_vertex();
+  // pp.get_value(count_vert,count_facets, vertexes, facets);
   double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,

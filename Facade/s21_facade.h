@@ -10,11 +10,9 @@ class Facade {
   using unit = unsigned int;
   Controller controller_;
   // MainWindow maintwindow_;
-
   bool set_path(std::string);
-  void get_value(unit &qcount_vert, unit &qcount_facets, double &qvertexes, unit &qfacets);
+  void get_value(unit &qcount_vert, unit &qcount_facets, double *qvertexes, unit *qfacets);
   void free();
-  
 }; // Facade
 } // s21
 
