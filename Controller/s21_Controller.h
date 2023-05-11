@@ -5,14 +5,15 @@
 
 namespace s21{
 class Controller {
-  s21::Model model_;
+  protected:
   s21::Model::data_t obj;
+  s21::Model model_;
   public:
-  using unit = unsigned int;
-  unit get_count_vertex() {return obj.count_vert;}
-  unit get_count_facets() {return obj.count_facets;}
-  double *get_arr_vertex() {return obj.vertexes;}
-  unit *get_arr_facets() {return obj.facets;}
+  // using unit = unsigned int;
+  // unit get_count_vertex() {return obj.count_vert;}
+  // unit get_count_facets() {return obj.count_facets;}
+  // double *get_arr_vertex() {return obj.vertexes;}
+  // unit *get_arr_facets() {return obj.facets;}
   bool set_path_file(std::string str) {
     return model_.s21_count_v_f(str, &obj);
   }
@@ -28,7 +29,7 @@ class Controller {
 // class Controller {
 //   private:
 //     Model model_;
-//     Model::data_t obj;
+//     // Model::data_t obj;
 
 //   public:
 //     using unit = unsigned int;
@@ -41,6 +42,7 @@ class Controller {
 //     bool set_path_file(std::string file_name, Model::DATA *data) { 
 //       return model_.s21_count_v_f(file_name, data); 
 //     }
+
 
 //     void open(std::string file_name, Model::DATA *data) { 
 //       return model_.s21_read(file_name, data); 
