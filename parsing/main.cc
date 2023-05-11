@@ -4,6 +4,7 @@
 
 
 int main () {
+<<<<<<< HEAD
   unsigned int count_vert;
   unsigned int count_facets;
   double *vertexes;
@@ -24,6 +25,15 @@ int main () {
   // facets = cc.get_arr_facets();
   // vertexes = cc.get_arr_vertex();
   // pp.get_value(count_vert,count_facets, vertexes, facets);
+=======
+  s21::Controller pp;
+  // data_t obj;
+  pp.set_path_file("../obj/cub.obj");
+  pp.open("../obj/cub.obj");
+  // std::string file_path = "../obj/cub.obj";
+  // s21_count_v_f(file_path, &obj);
+  // s21_read(file_path, &obj);
+>>>>>>> c81b2b51c0f8d32a16838d744221c448da785167
   double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
