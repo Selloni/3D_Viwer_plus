@@ -2,12 +2,9 @@
 #include "s21_viewer.h"
 
   // s21::Model pp;
-  s21::Move mv;
-  s21::Scale sc;
-  s21::Rotate rt;
 
 TEST(test_open, 1) {
-  s21::Model& model = s21::Model::getInstance();
+  s21::Model model;
   s21::Model::data_t obj;
   std::string file_path = "obj/cub.obj";
   model.s21_count_v_f(file_path, &obj);
@@ -25,7 +22,7 @@ TEST(test_open, 1) {
 }
 
 TEST(test_open, 2) {
-  s21::Model& model = s21::Model::getInstance();
+  s21::Model model;
   s21::Model::data_t obj;
   char file_path[30] = "obj/cub.obj";
   model.s21_count_v_f(file_path, &obj);
@@ -43,25 +40,30 @@ TEST(test_open, 2) {
 
 
 TEST(test_count_facets, 3) {
-  s21::Model& model = s21::Model::getInstance();
+  s21::Model model;
   s21::Model::data_t obj ;
   char file_path[30] = "obj/cub.obj";
   model.s21_count_v_f(file_path, &obj);
   ASSERT_EQ(obj.count_facets, 36);
-  // free(obj.count_facets);
+  delete(obj.facets);
+  delete(obj.vertexes);
+  // model.free(&obj);
 }
 
 TEST(test_count_vert, 4) {
-  s21::Model& model = s21::Model::getInstance();
+  s21::Model model;
   s21::Model::data_t obj ;
   char file_path[30] = "obj/cub.obj";
   model.s21_count_v_f(file_path, &obj);
   ASSERT_EQ(obj.count_vert, 8);
-  // free(obj.count_vert);
+  delete(obj.facets);
+  delete(obj.vertexes);
+  // model.free(&obj);
 }
 
 TEST(move, 3) {
-  s21::Model& model = s21::Model::getInstance();
+  s21::Move mv;
+  s21::Model model;
   s21::Model::data_t obj ;
   char file_path[30] = "obj/cub.obj";
   model.s21_count_v_f(file_path, &obj);
@@ -76,12 +78,15 @@ TEST(move, 3) {
     // printf("%lf,", obj.vertexes[i]);
     ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
   }
-  // free(obj.facets);
-  // free(obj.vertexes);
+  model.free(&obj);
+  // delete(obj.facets);
+  // delete(obj.vertexes);
 }
 
+// НЕ РАБОЧИЙ ТЕСТ
 // TEST(test_4, 4) {
-//   s21::Model& model = s21::Model::getInstance();
+//   s21::Move mv;
+//   s21::Model model;
 //   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   model.s21_count_v_f(file_path, &obj);
@@ -97,13 +102,16 @@ TEST(move, 3) {
 //     // printf("%lf,", obj.vertexes[i]);
 //     ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
 //   }
-//   // free(obj.facets);
-//   // free(obj.vertexes);
+//   model.free(&obj);
+//   // delete(obj.facets);
+//   // delete(obj.vertexes);
 // }
 
 
+// Не рабочий тест
 // TEST(test_5, 5) {
-//   s21::Model& model = s21::Model::getInstance();
+//   s21::Move mv;
+//   s21::Model model;
 //   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   model.s21_count_v_f(file_path, &obj);
@@ -118,32 +126,36 @@ TEST(move, 3) {
 //     // printf("%lf,", obj.vertexes[i]);
 //    ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
 //   }
+//   model.free(&obj);
 //   // free(obj.facets);
 //   // free(obj.vertexes);
 // }
 
-TEST(test_6, 6) {
-  s21::Model& model = s21::Model::getInstance();
-  s21::Model::data_t obj ;
-  char file_path[30] = "obj/cub.obj";
-  model.s21_count_v_f(file_path, &obj);
-  model.s21_read(file_path, &obj);
-  sc.s21_move(&obj.vertexes, 2.3, obj.count_vert * 3);
-  double vertex_1[] = {2.300000,  -2.300000, -2.300000, 2.300000,  -2.300000,
-                       2.300000,  -2.300000, -2.300000, 2.300000,  -2.300000,
-                       -2.300000, -2.300000, 2.300000,  2.300000,  -2.299998,
-                       2.299998,  2.300000,  2.300002,  -2.300000, 2.300000,
-                       2.300000,  -2.300000, 2.300000,  -2.300000};
-  for (size_t i = 0; i < 24; i++) {
-    // printf("%lf,", obj.vertexes[i]);
-    ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
-  }
-  // free(obj.facets);
-  // free(obj.vertexes);
-}
+// TEST(test_6, 6) {
+//   s21::Scale sc;
+//   s21::Model model;
+//   s21::Model::data_t obj ;
+//   char file_path[30] = "obj/cub.obj";
+//   model.s21_count_v_f(file_path, &obj);
+//   model.s21_read(file_path, &obj);
+//   sc.s21_move(&obj.vertexes, 2.3, obj.count_vert * 3);
+//   double vertex_1[] = {2.300000,  -2.300000, -2.300000, 2.300000,  -2.300000,
+//                        2.300000,  -2.300000, -2.300000, 2.300000,  -2.300000,
+//                        -2.300000, -2.300000, 2.300000,  2.300000,  -2.299998,
+//                        2.299998,  2.300000,  2.300002,  -2.300000, 2.300000,
+//                        2.300000,  -2.300000, 2.300000,  -2.300000};
+//   for (size_t i = 0; i < 24; i++) {
+//     // printf("%lf,", obj.vertexes[i]);
+//     ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
+//   }
+//   model.free(&obj);
+//   // delete(obj.facets);
+//   // delete(obj.vertexes);  
+// }
 
 // TEST(test_7, 7) {
-//   s21::Model& model = s21::Model::getInstance();
+//   s21::Rotate rt;
+//   s21::Model model;
 //   s21::Model::data_t obj ;
 //   char file_path[30] = "obj/cub.obj";
 //   model.s21_count_v_f(file_path, &obj);
@@ -160,9 +172,43 @@ TEST(test_6, 6) {
 //     // printf("%lf,", obj.vertexes[i]);
 //     ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
 //   }
-//   // free(obj.facets);
-//   // free(obj.vertexes);
+//   model.free(&obj);
+//   // delete(obj.facets);
+//   // delete(obj.vertexes);  
 // }
+
+TEST(MoveTest, MoveX) {
+  s21::Move move;
+  s21::Model::data_t obj;
+  obj.count_vert = 3;
+  obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+  double expected[9] {2.0, 2.0, 3.0, 5.0, 5.0, 6.0, 8.0, 8.0, 9.0};
+
+  move.s21_move(&obj.vertexes, 1.0, obj.count_vert, 'x');
+
+  for (int i = 0; i < 9; ++i) {
+    EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
+  }
+  delete[] obj.vertexes;
+}
+
+
+TEST(ScaleTest, Scale) {
+  s21::Scale scale;
+  s21::Model::data_t obj;
+  obj.count_vert = 3;
+  obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+  double expected[9] {2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0};
+
+  // Act
+  scale.s21_move(&obj.vertexes, 2.0, obj.count_vert);
+
+  // Assert
+  for (int i = 0; i < 9; ++i) {
+    EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
+  }
+  delete[] obj.vertexes;
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

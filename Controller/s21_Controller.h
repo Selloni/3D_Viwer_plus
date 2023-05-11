@@ -24,6 +24,27 @@ class Controller {
     model_.s21_read(str, &obj);
   }
 }; // Controller
+
+// class Controller {
+//   private:
+//     Model model_;
+//     // Model::data_t obj;
+
+//   public:
+//     bool getCountVF(std::string file_name, Model::DATA *data) { 
+//       return model_.s21_count_v_f(file_name, data); 
+//     }
+
+//     void readFile(std::string file_name, Model::DATA *data) { 
+//       return model_.s21_read(file_name, data); 
+//     }
+
+//     void moveVertices(double **vertex, double move, Model::unint count_v, char direction) { 
+//       return model_.s21_move(vertex, move, count_v, direction); 
+//     }
+// };
+
+
 } // s21
 
 #endif // SRC_CONTROLLER_S21_CONTROLLER_H_

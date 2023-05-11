@@ -24,15 +24,19 @@ namespace s21 {
       } data_t;
 
     public:
-      static Model& getInstance() {
-        static Model instance;
-        return instance;
-      }
+      // static Model& getInstance() {
+      //   static Model instance;
+      //   return instance;
+      // }
       Model() {}
       ~Model() {}
       bool s21_count_v_f(std::string file_name, DATA *obj);
       void s21_read(std::string file_name, DATA *obj);
       void s21_move(double **vertex, double move, unint count_v, char direction);
+      void free(DATA *obj){
+        delete[] obj->facets;
+        delete[] obj->vertexes;
+      }
       // virtual void s21_scale(double **vertex, float scale, unint count_v);
 
     private:
