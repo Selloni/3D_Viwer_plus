@@ -2,9 +2,9 @@
 #include "../Controller/s21_Controller.h"
 
 int main () {
-  Controller pp;
+  s21::Controller pp;
   // data_t obj;
-  pp.set_find_file("../obj/cub.obj");
+  pp.set_path_file("../obj/cub.obj");
   pp.open("../obj/cub.obj");
   // std::string file_path = "../obj/cub.obj";
   // s21_count_v_f(file_path, &obj);

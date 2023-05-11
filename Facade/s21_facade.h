@@ -6,9 +6,9 @@
 
 namespace s21 {
 class Facade {
+  public:
   Controller controller_;
   // MainWindow MainWindow = new MainWindow();
-  public:
   bool set_path(std::string);
 
 }; // Facade
