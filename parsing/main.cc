@@ -12,14 +12,14 @@ int main () {
   s21::Facade ff;
   s21::Controller pp;
   // data_t obj;
-  pp.set_path_file("../obj/cub.obj");
-  pp.open("../obj/cub.obj");
-  // ff.set_path(file_path);
+  // pp.set_path_file("../obj/cub.obj");
+  // pp.open("../obj/cub.obj");
+  ff.set_path(file_path);
   // ff.get_value(count_vert,count_facets, vertexes, facets);
-  count_vert = ff.controller_.get_count_vertex();
-  count_facets =ff.controller_.get_count_facets();
-  vertexes = ff.controller_.get_arr_vertex();
-  facets = ff.controller_.get_arr_facets();
+  // count_vert = ff.controller_.get_count_vertex();
+  // count_facets =ff.controller_.get_count_facets();
+  // vertexes = ff.controller_.get_arr_vertex();
+  // facets = ff.controller_.get_arr_facets();
   // cc.set_path_file(file_path);
   // facets = cc.get_arr_facets();
   // vertexes = cc.get_arr_vertex();
@@ -30,6 +30,6 @@ int main () {
                        0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
                        1.000000,  -1.000000, 1.000000,  -1.000000};
   for (int i = 0; i < 24; i++) {
-    std::cout << "my::" << pp.get_arr_vertex()[i] << "  test::" << vertex[i] << '\n';;
+    std::cout << "my::" << ff.get_arr_vertex()[i] << "  test::" << vertex[i] << '\n';;
   }
 }

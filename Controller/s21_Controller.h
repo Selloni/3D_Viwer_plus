@@ -5,10 +5,10 @@
 
 namespace s21{
 class Controller {
-  protected:
-  s21::Model::data_t obj;
-  s21::Model model_;
+  // protected:
   public:
+  s21::Model model_;
+  s21::Model::data_t obj;
   // using unit = unsigned int;
   // unit get_count_vertex() {return obj.count_vert;}
   // unit get_count_facets() {return obj.count_facets;}
