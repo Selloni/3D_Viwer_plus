@@ -28,19 +28,30 @@ class Controller {
 // class Controller {
 //   private:
 //     Model model_;
-//     // Model::data_t obj;
+//     Model::data_t obj;
 
 //   public:
-//     bool getCountVF(std::string file_name, Model::DATA *data) { 
+//     using unit = unsigned int;
+
+//     unit get_count_vertex() {return obj.count_vert;}
+//     unit get_count_facets() {return obj.count_facets;}
+//     double *get_arr_vertex() {return obj.vertexes;}
+//     unit *get_arr_facets() {return obj.facets;}
+
+//     bool set_path_file(std::string file_name, Model::DATA *data) { 
 //       return model_.s21_count_v_f(file_name, data); 
 //     }
 
-//     void readFile(std::string file_name, Model::DATA *data) { 
+//     void open(std::string file_name, Model::DATA *data) { 
 //       return model_.s21_read(file_name, data); 
 //     }
 
 //     void moveVertices(double **vertex, double move, Model::unint count_v, char direction) { 
 //       return model_.s21_move(vertex, move, count_v, direction); 
+//     }
+
+//     void free(Model::DATA *obj) {
+//       return model_.free(obj);
 //     }
 // };
 

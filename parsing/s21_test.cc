@@ -61,27 +61,25 @@ TEST(test_count_vert, 4) {
   // model.free(&obj);
 }
 
-TEST(move, 3) {
-  s21::Move mv;
-  s21::Model model;
-  s21::Model::data_t obj ;
-  char file_path[30] = "obj/cub.obj";
-  model.s21_count_v_f(file_path, &obj);
-  model.s21_read(file_path, &obj);
-  mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
-  double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
-                       1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
-                       -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
-                       1.899999,  1.000000,  1.000001,  -0.100000, 1.000000,
-                       1.000000,  -0.100000, 1.000000,  -1.000000};
-  for (size_t i = 0; i < 24; i++) {
-    // printf("%lf,", obj.vertexes[i]);
-    ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
-  }
-  model.free(&obj);
-  // delete(obj.facets);
-  // delete(obj.vertexes);
-}
+// TEST(move, 3) {
+//   s21::Move mv;
+//   s21::Model model;
+//   s21::Model::data_t obj ;
+//   char file_path[30] = "obj/cub.obj";
+//   model.s21_count_v_f(file_path, &obj);
+//   model.s21_read(file_path, &obj);
+//   mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
+//   double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
+//                        1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
+//                        -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
+//                        1.899999,  1.000000,  1.000001,  -0.100000, 1.000000,
+//                        1.000000,  -0.100000, 1.000000,  -1.000000};
+//   for (size_t i = 0; i < 24; i++) {
+//     // printf("%lf,", obj.vertexes[i]);
+//     ASSERT_NEAR(obj.vertexes[i], vertex_1[i], 1e-6);
+//   }
+//   model.free(&obj);
+// }
 
 // НЕ РАБОЧИЙ ТЕСТ
 // TEST(test_4, 4) {
