@@ -78,7 +78,7 @@ TEST(test_open, 2) {
 //   // model.free(&obj);
 // }
 
-TEST(move, 3) {
+TEST(moveX, 3) {
   ff.set_path(file_path);
   s21::Move move;
   ff.fmove(move, 0.9, 'x');
@@ -150,7 +150,7 @@ TEST(move, 3) {
 // //   // free(obj.vertexes);
 // // }
 
-// // TEST(test_6, 6) {
+// // TEST(scale, 6) {
 // //   s21::Scale sc;
 // //   s21::Model model;
 // //   s21::Model::data_t obj ;
@@ -172,7 +172,7 @@ TEST(move, 3) {
 // //   // delete(obj.vertexes);  
 // // }
 
-// // TEST(test_7, 7) {
+// // TEST(rotate, 7) {
 // //   s21::Rotate rt;
 // //   s21::Model model;
 // //   s21::Model::data_t obj ;
@@ -259,6 +259,23 @@ TEST(move, 3) {
 //   }
 //   delete[] obj.vertexes;
 // }
+
+TEST(rotate, 2) {
+  ff.set_path(file_path);
+  s21::Rotate rotate;
+  ff.fmove(rotate, 1.1, 'x');
+  ff.fmove(rotate, 1.1, 'y');
+  ff.fmove(rotate, 1.1, 'z');
+  double vertex_1[] = {-0.727887, -0.465364, -1.501205, 1.227345, -0.553322,
+                       -1.089706, 0.815846,  -1.361819, 0.692709, -1.139386,
+                       -1.273860, 0.281210,  -0.815845, 1.361819, -0.692708,
+                       1.139387,  1.273860,  -0.281209, 0.727887, 0.465364,
+                       1.501205,  -1.227345, 0.553322,  1.089706};
+  for (size_t i = 0; i < 24; i++) {
+    ASSERT_EQ(ff.get_arr_vertex()[i], vertex_1[i]);
+  }
+  ff.free();
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
