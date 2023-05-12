@@ -156,11 +156,11 @@ void Move::s21_move(double **vertex, double move, unint count_v, char direction)
   diff = move;
 }
 
-// void Scale::s21_move(double **vertex, double scale, unint count_v) {
-//   if (scale == 0.0) return;
-//   for (unint i = 0; i < count_v * 3; ++i) {
-//     (*vertex)[i] *= scale;
-//   }
-// }
+void Scale::s21_move(double **vertex, double scale, unint count_v, char direction = 'y') {
+  if (scale == 0.0) return;
+  for (unint i = 0; i < count_v * 3; ++i) {
+    (*vertex)[i] *= scale;
+  }
+}
 
 }  // namespace s21
