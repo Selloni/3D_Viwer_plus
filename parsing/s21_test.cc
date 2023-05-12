@@ -14,7 +14,7 @@ TEST(test_open, 1) {
   s21::Model model;
   s21::Model::data_t obj;
   std::string file_path = "obj/cub.obj";
-  s21::Facade ff;
+  // s21::Facade ff;
   ff.set_path(file_path);
   ff.get_value(count_vert,count_facets, vertexes, facets);
   // cc.set_path_file(file_path);

@@ -9,9 +9,8 @@
 
 #define GL_SILENCE_DEPRECATION
 
-extern "C" {
-#include "../parsing/s21_viewer.h"
-}
+#include "../Facade/s21_facade.h"
+
 
 // typedef struct DATA_QT {
 //     unsigned int count_vert; // количество v
@@ -45,7 +44,7 @@ class Scene : public QOpenGLWidget {
   void saveSetting();
   void loadSetting();
   void free_mem();
-  void read_file(char *path_file);
+  void read_file(std::string path_file);
 
   Scene(QWidget *parent = 0);
 

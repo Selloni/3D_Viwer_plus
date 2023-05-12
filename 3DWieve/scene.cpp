@@ -1,5 +1,6 @@
 #include "scene.h"
 //#include <iostream>
+#include
 
 Scene::Scene(QWidget* parent)
     : QOpenGLWidget(parent)
@@ -28,7 +29,7 @@ void Scene::free_mem() {
   }
 }
 
-void Scene::read_file(char* path_file) {
+void Scene::read_file(std::string path_file) {
   if (obj.facets != NULL && obj.vertexes != NULL) {
     free(obj.facets);
     free(obj.vertexes);
@@ -42,21 +43,16 @@ void Scene::read_file(char* path_file) {
     qfacets = 0;
   }
   int err_flag = 1;
-  //    int len = strlen(path_file);
-  //    for (int i = 0; len > 1 ; --len) {
-  //        if (path_file[len] != '/') {
-  //            str[i] = path_file[len];
-  //            i++;
-  //        } else {
-  //            break;
-  //        }
-  //    }
   err_flag = s21_count_v_f(path_file, &obj);
   if (err_flag) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
   } else {
+      s21::Facade fac  = s21::Facade::getInstance(); ///
+      fac.set_path(path_file);  ///
+
+
     s21_read(path_file, &obj);
     qcount_facets = obj.count_facets;
     qcount_vert = obj.count_vert;

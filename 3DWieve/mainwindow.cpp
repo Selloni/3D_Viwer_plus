@@ -21,8 +21,9 @@ MainWindow::~MainWindow() {
 void MainWindow::on_pushButton_clicked() {
   qpath_file =
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
-  QByteArray ba = qpath_file.toLocal8Bit();  // перевод из Qstring in *str
-  char *path_file = ba.data();
+//  QByteArray ba = qpath_file.toLocal8Bit();  // перевод из Qstring in *str
+//  char *path_file = ba.data();
+  std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
 }
 
