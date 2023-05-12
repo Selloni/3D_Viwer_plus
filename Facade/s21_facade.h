@@ -7,9 +7,8 @@
 namespace s21 {
 class Facade {
   private:
-    Facade() {}
     Controller controller_;
-
+    Facade() {}
   public:
     using unit = unsigned int;
     static Facade& getInstance() {

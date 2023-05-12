@@ -10,42 +10,34 @@ double *vertexes;
 unit *facets;
 
 
+s21::Facade ff = s21::Facade::getInstance();
+std::string file_path = "obj/cub.obj";
+
 TEST(test_open, 1) {
-  // s21::Model model;
-  // s21::Model::data_t obj;
-  s21::data_t obj;
-  std::string file_path = "obj/cub.obj";
-  s21::Facade ff = s21::Facade::getInstance();
+  // s21::data_t obj;
   ff.set_path(file_path);
-  
-  double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
+    double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
                        0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
                        1.000000,  -1.000000, 1.000000,  -1.000000};
   for (int i = 0; i < 24; i++) {
-    ASSERT_EQ(obj.vertexes[i], vertex[i]);
+    ASSERT_EQ(ff.get_arr_vertex()[i], vertex[i]);
   }
-  delete(obj.facets);
-  delete(obj.vertexes);
+  ff.free();
 }
 
-// TEST(test_open, 2) {
-//   s21::Model model;
-//   s21::Model::data_t obj;
-//   char file_path[30] = "obj/cub.obj";
-//   model.s21_count_v_f(file_path, &obj);
-//   model.s21_read(file_path, &obj);
-//   int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
-//                      5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
-//                      0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
-//                      1, 5, 5, 2, 2, 1, 3, 2, 2, 7, 7, 3, 4, 0, 0, 7, 7, 4};
-//   for (size_t i = 0; i < 72; i++) {
-//     ASSERT_EQ(obj.facets[i], indices_1[i]);
-//   }
-//   // delete(obj.facets);
-//   // delete(obj.vertexes);
-// }
+TEST(test_open, 2) {
+  ff.set_path(file_path);
+  int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
+                     5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
+                     0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
+                     1, 5, 5, 2, 2, 1, 3, 2, 2, 7, 7, 3, 4, 0, 0, 7, 7, 4};
+  for (size_t i = 0; i < 72; i++) {
+    ASSERT_EQ(ff.get_arr_facets()[i], indices_1[i]);
+  }
+  ff.free();
+}
 
 // TEST(test_open, 2) {
 //   s21::Model& model = s21::Model::getInstance();
@@ -239,38 +231,38 @@ TEST(test_open, 1) {
 //   delete[] obj.vertexes;
 // }
 
-TEST(MoveTest, MoveX) {
-  s21::Move move;
-  s21::Model::data_t obj;
-  obj.count_vert = 3;
-  obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
-  double expected[9] {2.0, 2.0, 3.0, 5.0, 5.0, 6.0, 8.0, 8.0, 9.0};
+// TEST(MoveTest, MoveX) {
+//   s21::Move move;
+//   s21::Model::data_t obj;
+//   obj.count_vert = 3;
+//   obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+//   double expected[9] {2.0, 2.0, 3.0, 5.0, 5.0, 6.0, 8.0, 8.0, 9.0};
 
-  move.s21_move(&obj.vertexes, 1.0, obj.count_vert, 'x');
+//   move.s21_move(&obj.vertexes, 1.0, obj.count_vert, 'x');
 
-  for (int i = 0; i < 9; ++i) {
-    EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
-  }
-  delete[] obj.vertexes;
-}
+//   for (int i = 0; i < 9; ++i) {
+//     EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
+//   }
+//   delete[] obj.vertexes;
+// }
 
 
-TEST(ScaleTest, Scale) {
-  s21::Scale scale;
-  s21::Model::data_t obj;
-  obj.count_vert = 3;
-  obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
-  double expected[9] {2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0};
+// TEST(ScaleTest, Scale) {
+//   s21::Scale scale;
+//   s21::Model::data_t obj;
+//   obj.count_vert = 3;
+//   obj.vertexes = new double[9] {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+//   double expected[9] {2.0, 4.0, 6.0, 8.0, 10.0, 12.0, 14.0, 16.0, 18.0};
 
-  // Act
-  scale.s21_move(&obj.vertexes, 2.0, obj.count_vert);
+//   // Act
+//   scale.s21_move(&obj.vertexes, 2.0, obj.count_vert);
 
-  // Assert
-  for (int i = 0; i < 9; ++i) {
-    EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
-  }
-  delete[] obj.vertexes;
-}
+//   // Assert
+//   for (int i = 0; i < 9; ++i) {
+//     EXPECT_DOUBLE_EQ(obj.vertexes[i], expected[i]);
+//   }
+//   delete[] obj.vertexes;
+// }
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

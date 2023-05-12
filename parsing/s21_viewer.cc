@@ -1,7 +1,7 @@
 #include "s21_viewer.h"
 
 namespace s21 {
-bool Model::s21_count_v_f(std::string file_name, data_t obj) {  // открыли и посчитали, сколько нам потребуется памяти
+bool Model::s21_count_v_f(std::string file_name, data_t &obj) {  // открыли и посчитали, сколько нам потребуется памяти
   std::ifstream text;
   std::string ch;
   // int len = ch.length();  //длина строки
@@ -39,7 +39,7 @@ Model::unint Model::s21_space_for_Fsupp(std::string ch) {
 
 using namespace std;
 
-void Model::s21_read(std::string file_name, data_t obj) {
+void Model::s21_read(std::string file_name, data_t &obj) {
   std::ifstream text;
   unint index_v = 0;
   unint index_f = 0;
