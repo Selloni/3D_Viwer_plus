@@ -10,33 +10,34 @@ double *vertexes;
 unit *facets;
 
 
+s21::Facade ff = s21::Facade::getInstance();
+std::string file_path = "obj/cub.obj";
 
+TEST(test_open, 1) {
+  // s21::data_t obj;
+  ff.set_path(file_path);
+    double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
+                       1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
+                       -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
+                       0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
+                       1.000000,  -1.000000, 1.000000,  -1.000000};
+  for (int i = 0; i < 24; i++) {
+    ASSERT_EQ(ff.get_arr_vertex()[i], vertex[i]);
+  }
+  ff.free();
+}
 
-// TEST(test_open, 1) {
-//   // s21::data_t obj;
-//   ff.set_path(file_path);
-//     double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
-//                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
-//                        -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
-//                        0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
-//                        1.000000,  -1.000000, 1.000000,  -1.000000};
-//   for (int i = 0; i < 24; i++) {
-//     ASSERT_EQ(ff.get_arr_vertex()[i], vertex[i]);
-//   }
-//   ff.free();
-// }
-
-// TEST(test_open, 2) {
-//   ff.set_path(file_path);
-//   int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
-//                      5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
-//                      0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
-//                      1, 5, 5, 2, 2, 1, 3, 2, 2, 7, 7, 3, 4, 0, 0, 7, 7, 4};
-//   for (size_t i = 0; i < 72; i++) {
-//     ASSERT_EQ(ff.get_arr_facets()[i], indices_1[i]);
-//   }
-//   ff.free();
-// }
+TEST(test_open, 2) {
+  ff.set_path(file_path);
+  int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
+                     5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
+                     0, 1, 1, 3, 3, 0, 4, 7, 7, 5, 5, 4, 0, 4, 4, 1, 1, 0,
+                     1, 5, 5, 2, 2, 1, 3, 2, 2, 7, 7, 3, 4, 0, 0, 7, 7, 4};
+  for (size_t i = 0; i < 72; i++) {
+    ASSERT_EQ(ff.get_arr_facets()[i], indices_1[i]);
+  }
+  ff.free();
+}
 
 // TEST(test_open, 2) {
 //   s21::Model& model = s21::Model::getInstance();
@@ -77,21 +78,21 @@ unit *facets;
 //   // model.free(&obj);
 // }
 
-// TEST(moveX, 3) {
-//   ff.set_path(file_path);
-//   s21::Move move;
-//   ff.fmove(move, 0.9, 'x');
-//   // mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
-//   double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
-//                        1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
-//                        -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
-//                        1.899999,  1.000000,  1.000001,  -0.100000, 1.000000,
-//                        1.000000,  -0.100000, 1.000000,  -1.000000}; 
-//   for (size_t i = 0; i < 24; i++) {
-//     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
-//   }
-//   ff.free();
-// }
+TEST(moveX, 3) {
+  ff.set_path(file_path);
+  s21::Move move;
+  ff.fmove(move, 0.9, 'x');
+  // mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
+  double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
+                       1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
+                       -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
+                       1.899999,  1.000000,  1.000001,  -0.100000, 1.000000,
+                       1.000000,  -0.100000, 1.000000,  -1.000000}; 
+  for (size_t i = 0; i < 24; i++) {
+    ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
+  }
+  ff.free();
+}
 
 // // НЕ РАБОЧИЙ ТЕСТ
 // // TEST(test_4, 4) {
@@ -150,8 +151,6 @@ unit *facets;
 // // }
 
 TEST(scale, 6) {
-  s21::Facade ff = s21::Facade::getInstance();
-std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   s21::Scale scale;
   ff.fmove(scale, 2.3, 'z');
@@ -254,8 +253,6 @@ std::string file_path = "obj/cub.obj";
 // }
 
 TEST(Rotate, 2) {
-  s21::Facade ff = s21::Facade::getInstance();
-std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   s21::Rotate rotate;
   ff.fmove(rotate, 1.1, 'x');
