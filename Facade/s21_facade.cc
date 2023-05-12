@@ -6,12 +6,11 @@ bool s21::Facade::set_path(std::string str) {
   return flag;  // 0 success
 }
 
-// void s21::Facade::get_value(unit &qcount_vert, unit &qcount_facets, double *qvertexes, unit *qfacets) {
-//   qcount_vert = controller_.get_count_vertex();
-//   qcount_facets = controller_.get_count_facets();
-//   qvertexes = controller_.get_arr_vertex();
-//   qfacets = controller_.get_arr_facets();
-// }
+void s21::Facade::fmove(s21::Strategy &move, double offset, char direction) {
+  unsigned int i =2;
+  i = controller_.obj.count_vert;
+  move.s21_move(&controller_.obj.vertexes, offset, controller_.obj.count_vert * 3, direction); 
+}
 
 void s21::Facade::free(){
   controller_.free();

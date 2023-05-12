@@ -9,7 +9,7 @@ ifeq (${OS}, Linux)
 endif
 
 b:
-	$(GCC) parsing/s21_viewer.cc parsing/main.cc Facade/s21_facade.cc && ./a.out
+	$(G) parsing/s21_viewer.cc parsing/main.cc Facade/s21_facade.cc -g && ./a.out
 
 all: install tests
 

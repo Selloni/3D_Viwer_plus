@@ -12,8 +12,6 @@
 #include <sstream>
 
 
-
-
 namespace s21 {
 
   class data_t {
@@ -38,8 +36,6 @@ namespace s21 {
         delete[] obj.facets;
         delete[] obj.vertexes;
       }
-      // virtual void s21_scale(double **vertex, float scale, unint count_v);
-
     private:
       // Model() {} // приватный конструктор для Singleton
       unint s21_space_for_Fsupp(std::string ch);
@@ -48,20 +44,27 @@ namespace s21 {
 
   };  // Model
 
-  class Move : public Model {
+  class Strategy {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction);
-  };
+    using unint = unsigned int;
+    virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
+    // virtual void s21_move(double **vertex, double move, unint count_v) = 0;
+  };  // Straregy
 
-  class Rotate : public Model {
+  class Move : public Strategy {
     public:
-      void s21_move(double **vertex, double move, unint count_v, char direction);
-  };
+      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+  };  //  Move
 
-  class Scale : public Model {
+  class Rotate : public Strategy {
     public:
-      void s21_move(double **vertex, double move, unint count_v);
-  };
+      void s21_move(double **vertex, double move, unint count_v, char direction) override;
+  };  // Rotate
+
+  // class Scale : public Strategy {
+  //   public:
+  //     void s21_move(double **vertex, double move, unint count_v) override;
+  // }; // Scale
 
 }  // namespace s21
 
