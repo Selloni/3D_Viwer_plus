@@ -9,6 +9,10 @@ class Controller {
   public:
   s21::Model model_;
   s21::data_t obj;
+  Controller() {}
+  ~Controller() {
+    free();
+  }
   bool set_path_file(std::string str) {
     return model_.s21_count_v_f(str, obj);
   }

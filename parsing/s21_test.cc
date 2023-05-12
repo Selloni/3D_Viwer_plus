@@ -24,7 +24,7 @@ TEST(test_open, 1) {
   for (int i = 0; i < 24; i++) {
     ASSERT_EQ(ff.get_arr_vertex()[i], vertex[i]);
   }
-  ff.free();
+  // ff.free();
 }
 
 TEST(test_open, 2) {
@@ -36,7 +36,7 @@ TEST(test_open, 2) {
   for (size_t i = 0; i < 72; i++) {
     ASSERT_EQ(ff.get_arr_facets()[i], indices_1[i]);
   }
-  ff.free();
+  // ff.free();
 }
 
 // TEST(test_open, 2) {
@@ -91,7 +91,7 @@ TEST(moveX, 3) {
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
   }
-  ff.free();
+  // ff.free();
 }
 
 // // НЕ РАБОЧИЙ ТЕСТ
@@ -163,7 +163,7 @@ TEST(scale, 6) {
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
   }
-  ff.free(); 
+  // ff.free(); 
 }
 
 // // TEST(rotate, 7) {
@@ -266,7 +266,7 @@ TEST(Rotate, 2) {
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
   }
-  ff.free();
+  // ff.free();
 }
 
 int main(int argc, char **argv) {
