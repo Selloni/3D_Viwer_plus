@@ -23,9 +23,7 @@ namespace s21 {
     unint count_facets = 0;
     double *vertexes = 0;
     unint *facets = 0;
-  }
-
-
+  }; // data_t
 
   class Model {
     public:
@@ -48,7 +46,7 @@ namespace s21 {
       unint s21_Fconnect(s21::data_t obj, std::string ch, unint index_f);
       int s21_digit_supp(char ind);
 
-  };
+  };  // Model
 
   class Move : public Model {
     public:
