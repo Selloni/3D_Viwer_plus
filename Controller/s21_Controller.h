@@ -17,8 +17,12 @@ class Controller {
     return model_.s21_count_v_f(str, obj);
   }
   void free(){
-    delete[] obj.facets;
-    delete[] obj.vertexes;
+    if (obj.facets != nullptr) {
+      delete[] obj.facets;
+    }
+    if (obj.count_vert) {
+      delete[] obj.vertexes;
+    }
   }
   void open(std::string str) {
     model_.s21_read(str, obj);

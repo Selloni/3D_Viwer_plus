@@ -35,6 +35,7 @@ dist:
 
 test:
 	$(G) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc -o test.out
+# ./test.out --gtest_repeat=3 --gtest_break_on_failure
 	./test.out
 
 gcov_report:

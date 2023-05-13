@@ -3,18 +3,12 @@
 #include "../Facade/s21_facade.h"
   // s21::Model pp;
 
-using unit = unsigned int;
-unit count_vert;
-unit count_facets;
-double *vertexes;
-unit *facets;
 
 
-s21::Facade ff = s21::Facade::getInstance();
-std::string file_path = "obj/cub.obj";
 
 TEST(test_open, 1) {
-  // s21::data_t obj;
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
     double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
                        1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
@@ -28,6 +22,8 @@ TEST(test_open, 1) {
 }
 
 TEST(test_open, 2) {
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   int indices_1[] = {1, 2, 2, 3, 3, 1, 7, 6, 6, 5, 5, 7, 4, 5, 5, 1, 1, 4,
                      5, 6, 6, 2, 2, 5, 2, 6, 6, 7, 7, 2, 0, 3, 3, 7, 7, 0,
@@ -79,6 +75,8 @@ TEST(test_open, 2) {
 // }
 
 TEST(moveX, 3) {
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   s21::Move move;
   ff.fmove(move, 0.9, 'x');
@@ -151,6 +149,8 @@ TEST(moveX, 3) {
 // // }
 
 TEST(scale, 6) {
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   s21::Scale scale;
   ff.fmove(scale, 2.3, 'z');
@@ -253,6 +253,8 @@ TEST(scale, 6) {
 // }
 
 TEST(Rotate, 2) {
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   s21::Rotate rotate;
   ff.fmove(rotate, 1.1, 'x');
