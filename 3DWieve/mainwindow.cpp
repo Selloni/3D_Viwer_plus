@@ -23,6 +23,7 @@ void MainWindow::on_pushButton_clicked() {
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
   std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
+//  std::cout << " get_count_vertex = " << scene.facad.get_count_vertex() << std::endl;
 }
 
 void MainWindow::on_line_color_activated(int index) {
@@ -126,12 +127,13 @@ void MainWindow::on_but_scale_clicked() {
 }
 
 void MainWindow::on_actioninfo_triggered() {
-  QString a = QString::number(scene.facad.get_count_facets());
-  QString b = QString::number(scene.facad.get_count_vertex());
+  QString a = QString::number(scene.count_v);
+  QString b = QString::number(scene.count_vert_fac().second);
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
                  "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
 
+  std::cout << " get_count_vertex = " << scene.count_v << std::endl;
   QMessageBox::information(this, tr("Info"), info);
 }
 

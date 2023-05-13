@@ -1,5 +1,5 @@
 #include "scene.h"
-//#include <iostream>
+
 
 Scene::Scene(QWidget* parent)
     : QOpenGLWidget(parent)
@@ -21,6 +21,15 @@ void Scene::read_file(std::string path_file) {
     msgBox.setText("The file was not considered");
     msgBox.exec();
  }
+    count_v = facad.get_count_vertex();
+  std::cout << " 1) get_count_vertex = " << facad.get_count_vertex() << std::endl;
+  std::cout << " 1) get_count = " << facad.get_count_facets() << std::endl;
+
+}
+
+std::pair<unsigned int, unsigned int> Scene::count_vert_fac() {
+    std::pair<unsigned int, unsigned int> result = {facad.get_count_vertex(), facad.get_count_facets()};
+    return result;
 }
 
 void Scene::initializeGL() {
