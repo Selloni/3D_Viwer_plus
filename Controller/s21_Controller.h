@@ -11,12 +11,12 @@ class Controller {
   s21::data_t obj;
   Controller() {}
   ~Controller() {
-    free();
+    // this->free();
   }
   bool set_path_file(std::string str) {
     return model_.s21_count_v_f(str, obj);
   }
-  void free(){
+  void free() {
     if (obj.facets != nullptr) {
       delete[] obj.facets;
     }

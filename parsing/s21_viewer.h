@@ -32,10 +32,6 @@ namespace s21 {
       bool s21_count_v_f(std::string file_name, s21::data_t &obj);
       void s21_read(std::string file_name, s21::data_t &obj);
       void s21_move(double **vertex, double move, unint count_v, char direction);
-      void free(s21::data_t obj){
-        delete[] obj.facets;
-        delete[] obj.vertexes;
-      }
     private:
       // Model() {} // приватный конструктор для Singleton
       unint s21_space_for_Fsupp(std::string ch);

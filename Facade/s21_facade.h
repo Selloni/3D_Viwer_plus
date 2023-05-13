@@ -10,6 +10,7 @@ class Facade {
     Controller controller_;
     Facade() {}
   public:
+    // ~Facade(){this->free();}
     using unit = unsigned int;
     static Facade& getInstance() {
       static Facade instance;
