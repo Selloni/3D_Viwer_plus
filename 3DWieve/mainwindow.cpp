@@ -83,51 +83,53 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-    s21::Rotate move;
-    scene.facad.fmove(move, arg1,'x');
-//  s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
-//             ui->sceneWidget->qcount_vert);
+    s21::Rotate rotate;
+    scene.facad.fmove(rotate, arg1,'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'y', arg1,
-             ui->sceneWidget->qcount_vert);
+    s21::Rotate rotate;
+    scene.facad.fmove(rotate, arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'z', arg1,
-             ui->sceneWidget->qcount_vert);
+    s21::Rotate rotate;
+    scene.facad.fmove(rotate, arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-  s21_moveX(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+    s21::Move move;
+    scene.facad.fmove(move, arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-  s21_moveY(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+    s21::Move move;
+    scene.facad.fmove(move, arg1, 'y');
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-  s21_moveZ(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+    s21::Move move;
+    scene.facad.fmove(move, arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
-  s21_scale(&ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
+    s21::Scale scale;
+    scene.facad.fmove(scale, tmp, 'o');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_actioninfo_triggered() {
-  QString a = QString::number(ui->sceneWidget->qcount_vert);
-  QString b = QString::number(ui->sceneWidget->qcount_facets);
+  QString a = QString::number(scene.facad.get_count_facets());
+  QString b = QString::number(scene.facad.get_count_vertex());
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
                  "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
