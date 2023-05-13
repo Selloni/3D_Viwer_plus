@@ -83,8 +83,10 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
-             ui->sceneWidget->qcount_vert);
+    s21::Rotate move;
+    scene.facad.fmove(move, arg1,'x');
+//  s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
+//             ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 

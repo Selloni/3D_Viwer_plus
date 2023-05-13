@@ -12,18 +12,10 @@
 #include "../Facade/s21_facade.h"
 
 
-// typedef struct DATA_QT {
-//     unsigned int count_vert; // количество v
-//     unsigned int count_facets; // количество f
-//     double *vertexes; // хранятся в, цифры
-//     unsigned int *facets; // массив, в нем полигоны, эфки 122331
-// } data_qt;
-
 class Scene : public QOpenGLWidget {
  private slots:
 
   QSettings *settings;
-  //  float xRot, yRot, zRot;
   QPoint mPos;
 
   void mousePressEvent(QMouseEvent *) override;  // click mouse
@@ -41,17 +33,13 @@ class Scene : public QOpenGLWidget {
   void draw();
 
  public:
+  s21::Facade facad = s21::Facade::getInstance();
   void saveSetting();
   void loadSetting();
   void free_mem();
   void read_file(std::string path_file);
 
   Scene(QWidget *parent = 0);
-
-  unsigned int qcount_vert = 0;    // количество v
-  unsigned int qcount_facets = 0;  // количество f
-  double *qvertexes = 0;           // хранятся в, цифры
-  unsigned int *qfacets = 0;  // массив, в нем полигоны, 122331
 
   char *str;
 
