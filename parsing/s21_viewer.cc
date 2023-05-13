@@ -45,7 +45,7 @@ void Model::s21_read(std::string file_name, data_t &obj) {
   unint index_f = 0;
   std::string ch;
   std::string tmp;
-  obj.vertexes = new double[obj.count_vert * 3 + 1]; 
+  obj.vertexes = new double[obj.count_vert * 3 + 1];
   obj.facets = new unint[obj.count_facets * 2 + 1] ;
   text.open(file_name, std::ios::in);
   if (text.is_open()) {  // считываем построчно

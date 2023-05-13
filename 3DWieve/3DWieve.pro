@@ -17,7 +17,7 @@ SOURCES += \
     ../GIFCreation/gifLib/gif_hash.c \
     ../GIFCreation/gifLib/gifalloc.c \
     ../GIFCreation/gifLib/quantize.c \
-#    ../parsing/s21_viewer.сс \
+    ../parsing/s21_viewer.cc \
     ../Facade/s21_facade.cc \
     main.cpp \
     mainwindow.cpp \
