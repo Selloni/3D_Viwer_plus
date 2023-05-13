@@ -9,13 +9,8 @@ Scene::Scene(QWidget* parent)
                            QSettings::IniFormat);
 }
 
-
-//data_t obj = {'\0'};
-//double arr[] = {0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 0};  // масив вершин
-//unsigned int mass[] = {1, 0, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4};  // масив соединений
-
 void Scene::free_mem() {
-
+    facad.free();
 }
 
 void Scene::read_file(std::string path_file) {
@@ -25,13 +20,6 @@ void Scene::read_file(std::string path_file) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
-//  } else {
-//    fac.set_path(path_file);  ///
-//    s21_read(path_file, &obj);
-//    qcount_facets = obj.count_facets;
-//    qcount_vert = obj.count_vert;
-//    qvertexes = obj.vertexes;
-//    qfacets = obj.facets;
  }
 }
 

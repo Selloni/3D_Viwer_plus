@@ -19,9 +19,11 @@ class Controller {
   void free() {
     if (obj.facets != nullptr) {
       delete[] obj.facets;
+        obj.count_facets = 0;
     }
     if (obj.count_vert) {
       delete[] obj.vertexes;
+        obj.count_vert = 0;
     }
   }
   void open(std::string str) {

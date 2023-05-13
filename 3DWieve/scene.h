@@ -33,7 +33,7 @@ class Scene : public QOpenGLWidget {
   void draw();
 
  public:
-  s21::Facade facad = s21::Facade::getInstance();
+  s21::Facade facad ;
   void saveSetting();
   void loadSetting();
   void free_mem();
