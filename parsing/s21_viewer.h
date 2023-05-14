@@ -17,8 +17,8 @@ namespace s21 {
   class data_t {
     public:
     using unint = unsigned int;
-    unint count_vert = 0;
-    unint count_facets = 0;
+    unint count_vert;
+    unint count_facets;
     double *vertexes = 0;
     unint *facets = 0;
   }; // data_t

@@ -21,7 +21,7 @@ class Facade {
     bool set_path(std::string);
     void free();
     unit get_count_vertex() {return controller_.obj.count_vert;}
-    unit get_count_facets() {return controller_.obj.count_facets;}
+    unit get_count_facets() { return controller_.obj.count_facets;}
     double *get_arr_vertex() {return controller_.obj.vertexes;}
     unit *get_arr_facets() {return controller_.obj.facets;}
     void fmove(s21::Strategy &move, double offset, char direction);
