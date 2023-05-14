@@ -82,35 +82,35 @@ void MainWindow::on_background_clicked() {
 void MainWindow::on_rotateX_valueChanged(double arg1) {
 //    s21::Rotate rotate;
 //    ui->sceneWidget->facad.fmove(rotate, arg1,'x'); 
-  ui->sceneWidget->facad.test_rotate(arg1, 'x');
+  ui->sceneWidget->facad.Rotate(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
 //    s21::Rotate rotate;
 //    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
-    ui->sceneWidget->facad.test_rotate(arg1, 'y');
+    ui->sceneWidget->facad.Rotate(arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
 //    s21::Rotate rotate;
 //    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
-    ui->sceneWidget->facad.test_rotate(arg1, 'z');
+    ui->sceneWidget->facad.Rotate(arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'x');
-    ui->sceneWidget->facad.test_move(arg1, 'x');
+    ui->sceneWidget->facad.Move(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'y');
-    ui->sceneWidget->facad.test_move(arg1, 'y');
+    ui->sceneWidget->facad.Move(arg1, 'y');
   ui->sceneWidget->update();
 
 }
@@ -118,7 +118,7 @@ void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'z');
-    ui->sceneWidget->facad.test_move(arg1, 'z');
+    ui->sceneWidget->facad.Move(arg1, 'z');
   ui->sceneWidget->update();
 }
 
@@ -127,7 +127,7 @@ void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 void MainWindow::on_but_scale_clicked() {
 //    s21::Scale scale;
 //  ui->sceneWidget->facad.fmove(scale, tmp, 'o');
-    ui->sceneWidget->facad.test_scale(tmp);
+    ui->sceneWidget->facad.Scale(tmp);
   ui->sceneWidget->update();
 }
 
@@ -137,8 +137,6 @@ void MainWindow::on_actioninfo_triggered() {
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
                  "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
-
-  std::cout << " get_count_vertex = " << scene.count_v << std::endl;
   QMessageBox::information(this, tr("Info"), info);
 }
 

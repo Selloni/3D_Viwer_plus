@@ -17,17 +17,17 @@ class Facade {
       return instance;
     }
     // MainWindow MainWindow = new MainWindow();
-    bool set_path(std::string);
-    void free();
-    void test_scale(double scale);
-    unit get_count_vertex() {return controller_.obj.count_vert;}
-    unit get_count_facets() { return controller_.obj.count_facets;}
-    double *get_arr_vertex() {return controller_.obj.vertexes;}
-    unit *get_arr_facets() {return controller_.obj.facets;}
+    bool SetPath(std::string);
+    void FreeMemory();
+    void Scale(double scale);
+    unit GetCountVertex() {return controller_.obj.count_vert;}
+    unit GetCountFacets() { return controller_.obj.count_facets;}
+    double *GetArrVertex() {return controller_.obj.vertexes;}
+    unit *GetArrFacets() {return controller_.obj.facets;}
     // void fmove(s21::Strategy &move, double offset, char direction);
 
-    void test_rotate(double scale, char direction);
-    void test_move(double scale, char direction);
+    void Rotate(double scale, char direction);
+    void Move(double scale, char direction);
 }; // Facade
 
 
