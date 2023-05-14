@@ -108,7 +108,7 @@ int Model::s21_digit_supp(char ind) {
 }
 
 // поменялись местами аргументы, теперь направление передается последним аргументом, остальное в таком же порядке
-void Rotate::s21_move(double **vertex, double move, unint count_v, char direction) {
+// void Rotate::s21_move(double **vertex, double move, unint count_v, char direction) {
   // double temp_x = 0.0;
   // double temp_y = 0.0;
   // double temp_z = 0.0;
@@ -147,22 +147,22 @@ void Rotate::s21_move(double **vertex, double move, unint count_v, char directio
   //     }
   //     break;
   // }
-}
+// }
 
-void Move::s21_move(double **vertex, double move, unint count_v, char direction) {
+// void Move::s21_move(double **vertex, double move, unint count_v, char direction) {
   // static double diff = 0;
   // unint i;
   // i = (direction == 'x') ? 0 : ((direction == 'y') ? 1 : ((direction == 'z') ? 2 : 0));
   // for (i = 0; i < count_v * 3; i += 3) (*vertex)[i] += move - diff;
   // diff = move;
-}
+// }
 
-void Scale::s21_move(double **vertex, double scale, unint count_v, char direction) {
-  if (scale == 0.0) return;
-  direction = direction;
-  for (unint i = 0; i < count_v * 3; ++i) {
-    (*vertex)[i] *= scale;
-  }
-}
+// void Scale::s21_move(double **vertex, double scale, unint count_v, char direction) {
+//   if (scale == 0.0) return;
+//   direction = direction;
+//   for (unint i = 0; i < count_v * 3; ++i) {
+//     (*vertex)[i] *= scale;
+//   }
+// }
 
 }  // namespace s21

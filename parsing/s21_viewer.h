@@ -40,26 +40,26 @@ namespace s21 {
 
   };  // Model
 
-  class Strategy {
-    public:
-    using unint = unsigned int;
-    virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
-  };  // Straregy
+  // class Strategy {
+  //   public:
+  //   using unint = unsigned int;
+  //   virtual void s21_move(double **vertex, double move, unint count_v, char direction) = 0;
+  // };  // Straregy
 
-  class Move : public Strategy {
-    public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
-  };  //  Move
+  // class Move : public Strategy {
+  //   public:
+  //     void s21_move(double **vertex, double move, unint count_v, char direction) override;
+  // };  //  Move
 
-  class Rotate : public Strategy {
-    public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
-  };  // Rotate
+  // class Rotate : public Strategy {
+  //   public:
+  //     void s21_move(double **vertex, double move, unint count_v, char direction) override;
+  // };  // Rotate
 
-  class Scale : public Strategy {
-    public:
-      void s21_move(double **vertex, double move, unint count_v, char direction) override;
-  }; // Scale
+  // class Scale : public Strategy {
+  //   public:
+  //     void s21_move(double **vertex, double move, unint count_v, char direction) override;
+  // }; // Scale
 
 }  // namespace s21
 

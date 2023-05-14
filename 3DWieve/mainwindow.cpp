@@ -42,7 +42,6 @@ void MainWindow::on_line_dashed_clicked() {
 
 void MainWindow::on_line_width_valueChanged(int value) {
   ui->sceneWidget->l_w = value;
-  ui->line_progress->setValue(value);
   ui->sceneWidget->update();
 }
 
@@ -82,31 +81,36 @@ void MainWindow::on_background_clicked() {
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
 //    s21::Rotate rotate;
-//    ui->sceneWidget->facad.fmove(rotate, arg1,'x');
+//    ui->sceneWidget->facad.fmove(rotate, arg1,'x'); 
+  ui->sceneWidget->facad.test_rotate(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
 //    s21::Rotate rotate;
 //    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
+    ui->sceneWidget->facad.test_rotate(arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
 //    s21::Rotate rotate;
 //    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
+    ui->sceneWidget->facad.test_rotate(arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'x');
+    ui->sceneWidget->facad.test_move(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'y');
+    ui->sceneWidget->facad.test_move(arg1, 'y');
   ui->sceneWidget->update();
 
 }
@@ -114,6 +118,7 @@ void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
 //    s21::Move move;
 //    ui->sceneWidget->facad.fmove(move, arg1, 'z');
+    ui->sceneWidget->facad.test_move(arg1, 'z');
   ui->sceneWidget->update();
 }
 
@@ -122,7 +127,7 @@ void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 void MainWindow::on_but_scale_clicked() {
 //    s21::Scale scale;
 //  ui->sceneWidget->facad.fmove(scale, tmp, 'o');
-    ui->sceneWidget->facad.test_move(tmp);
+    ui->sceneWidget->facad.test_scale(tmp);
   ui->sceneWidget->update();
 }
 
