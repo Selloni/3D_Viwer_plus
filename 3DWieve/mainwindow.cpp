@@ -23,6 +23,7 @@ void MainWindow::on_pushButton_clicked() {
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
   std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
+//  std::cout << " get_count_vertex = " << scene.facad.get_count_vertex() << std::endl;
 }
 
 void MainWindow::on_line_color_activated(int index) {
@@ -82,38 +83,38 @@ void MainWindow::on_background_clicked() {
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
     s21::Rotate rotate;
-    scene.facad.fmove(rotate, arg1,'x');
+    ui->sceneWidget->facad.fmove(rotate, arg1,'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
     s21::Rotate rotate;
-    scene.facad.fmove(rotate, arg1, 'y');
+    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
     s21::Rotate rotate;
-    scene.facad.fmove(rotate, arg1, 'z');
+    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
     s21::Move move;
-    scene.facad.fmove(move, arg1, 'x');
+    ui->sceneWidget->facad.fmove(move, arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
     s21::Move move;
-    scene.facad.fmove(move, arg1, 'y');
+    ui->sceneWidget->facad.fmove(move, arg1, 'y');
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
     s21::Move move;
-    scene.facad.fmove(move, arg1, 'z');
+    ui->sceneWidget->facad.fmove(move, arg1, 'z');
   ui->sceneWidget->update();
 }
 
@@ -121,17 +122,18 @@ void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
     s21::Scale scale;
-    scene.facad.fmove(scale, tmp, 'o');
+    ui->sceneWidget->facad.fmove(scale, tmp, 'o');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_actioninfo_triggered() {
-  QString a = QString::number(scene.facad.get_count_facets());
-  QString b = QString::number(scene.facad.get_count_vertex());
+  QString a = QString::number(ui->sceneWidget->count_v);
+  QString b = QString::number(ui->sceneWidget->count_vert_fac().second);
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
                  "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
 
+  std::cout << " get_count_vertex = " << scene.count_v << std::endl;
   QMessageBox::information(this, tr("Info"), info);
 }
 

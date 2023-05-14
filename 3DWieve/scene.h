@@ -32,12 +32,16 @@ class Scene : public QOpenGLWidget {
   void projection(int proj);
   void draw();
 
+
  public:
+  unsigned int count_v;
   s21::Facade facad ;
   void saveSetting();
   void loadSetting();
   void free_mem();
   void read_file(std::string path_file);
+
+  std::pair<unsigned int, unsigned int> count_vert_fac();
 
   Scene(QWidget *parent = 0);
 

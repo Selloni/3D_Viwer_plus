@@ -13,6 +13,7 @@ bool Model::s21_count_v_f(std::string file_name, data_t &obj) {  // открыл
         obj.count_vert++;
       } else if (ch[0] == 'f' && ch[1] == ' ') {  // facets
         obj.count_facets += s21_space_for_Fsupp(ch);
+        // std::cout << " МЕНЯ = " << obj.count_facets << std::endl;
       }
     }
     text.close();
