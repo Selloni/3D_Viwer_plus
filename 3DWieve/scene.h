@@ -70,7 +70,7 @@ class Scene : public QOpenGLWidget {
   double moveZ = 0.0;
 
   int proj = 0;
-  QString path_file;
+  QString path_file{};
 
  private:
   float xRot, yRot, zRot, zoomScale, x_trans, y_trans, start_y, start_x;

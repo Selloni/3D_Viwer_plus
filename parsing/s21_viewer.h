@@ -17,10 +17,10 @@ namespace s21 {
   class data_t {
     public:
     using unint = unsigned int;
-    unint count_vert;
-    unint count_facets;
-    double *vertexes = 0;
-    unint *facets = 0;
+    unint count_vert = 0;
+    unint count_facets = 0;
+    double *vertexes = nullptr;
+    unint *facets = nullptr;
   }; // data_t
 
   class Model {
@@ -35,7 +35,7 @@ namespace s21 {
     private:
       // Model() {} // приватный конструктор для Singleton
       unint s21_space_for_Fsupp(std::string ch);
-      unint s21_Fconnect(s21::data_t obj, std::string ch, unint index_f);
+      unint s21_Fconnect(s21::data_t &obj, std::string ch, unint index_f);
       int s21_digit_supp(char ind);
 
   };  // Model

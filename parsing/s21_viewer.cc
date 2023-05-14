@@ -69,7 +69,7 @@ void Model::s21_read(std::string file_name, data_t &obj) {
   text.close();
 }
 
-Model::unint Model::s21_Fconnect(data_t obj, std::string ch, unint index_f) {
+Model::unint Model::s21_Fconnect(data_t &obj, std::string ch, unint index_f) {
   int closure_val{};  // для замыкания полигона
   int i_flag = 0;  // порядковый номер записанного числа
   for (unint i = 0; i < ch.length(); ++i) {

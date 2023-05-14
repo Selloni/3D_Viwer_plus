@@ -19,10 +19,12 @@ class Controller {
   void free() {
     if (obj.facets != nullptr) {
       delete[] obj.facets;
+        obj.facets = nullptr;
       obj.count_facets = 0;
     }
-    if (obj.count_vert) {
+    if (obj.vertexes) {
       delete[] obj.vertexes;
+        obj.vertexes = nullptr;
       obj.count_vert = 0;
     }
     std::cout << "free()" << "\n";

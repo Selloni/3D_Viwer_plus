@@ -70,6 +70,10 @@ void Scene::draw() {
     }
     line_color(l_c);
     line_style(l_s);
+//    for (int i = 0; i != facad.GetCountFacets(); ++i) {
+//        qDebug()<<facad.GetArrFacets()[i] << "_";
+//    }
+    qDebug()<<facad.GetCountFacets() << "";
     glDrawElements(GL_LINES, (facad.GetCountFacets() * 2), GL_UNSIGNED_INT, facad.GetArrFacets());
     glLineWidth(l_w);  // size line
     glDisableClientState(GL_VERTEX_ARRAY);
