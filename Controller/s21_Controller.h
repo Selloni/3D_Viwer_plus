@@ -19,12 +19,13 @@ class Controller {
   void free() {
     if (obj.facets != nullptr) {
       delete[] obj.facets;
-        obj.count_facets = 0;
+      obj.count_facets = 0;
     }
     if (obj.count_vert) {
       delete[] obj.vertexes;
-        obj.count_vert = 0;
+      obj.count_vert = 0;
     }
+    std::cout << "free()" << "\n";
   }
   void open(std::string str) {
     model_.s21_read(str, obj);

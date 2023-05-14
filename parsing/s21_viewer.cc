@@ -109,56 +109,57 @@ int Model::s21_digit_supp(char ind) {
 
 // поменялись местами аргументы, теперь направление передается последним аргументом, остальное в таком же порядке
 void Rotate::s21_move(double **vertex, double move, unint count_v, char direction) {
-  double temp_x = 0.0;
-  double temp_y = 0.0;
-  double temp_z = 0.0;
-  switch (direction) {
-    case 'x':
-      for (unint i = 0; i < count_v * 3; i += 3) {
-        temp_x = (*vertex)[i];
-        temp_y = (*vertex)[i + 1];
-        temp_z = (*vertex)[i + 2];
+  // double temp_x = 0.0;
+  // double temp_y = 0.0;
+  // double temp_z = 0.0;
+  // switch (direction) {
+  //   case 'x':
+  //     for (unint i = 0; i < count_v * 3; i += 3) {
+  //       temp_x = (*vertex)[i];
+  //       temp_y = (*vertex)[i + 1];
+  //       temp_z = (*vertex)[i + 2];
 
-        (*vertex)[i] = temp_x;
-        (*vertex)[i + 1] = cos(move) * temp_y - sin(move) * temp_z;
-        (*vertex)[i + 2] = sin(move) * temp_y + cos(move) * temp_z;
-      }
-      break;
-    case 'y':
-      for (unint i = 0; i < count_v * 3; i += 3) {
-        temp_x = (*vertex)[i];
-        temp_y = (*vertex)[i + 1];
-        temp_z = (*vertex)[i + 2];
+  //       (*vertex)[i] = temp_x;
+  //       (*vertex)[i + 1] = cos(move) * temp_y - sin(move) * temp_z;
+  //       (*vertex)[i + 2] = sin(move) * temp_y + cos(move) * temp_z;
+  //     }
+  //     break;
+  //   case 'y':
+  //     for (unint i = 0; i < count_v * 3; i += 3) {
+  //       temp_x = (*vertex)[i];
+  //       temp_y = (*vertex)[i + 1];
+  //       temp_z = (*vertex)[i + 2];
 
-        (*vertex)[i] = cos(move) * temp_x + sin(move) * temp_z;
-        (*vertex)[i + 1] = temp_y;
-        (*vertex)[i + 2] = -sin(move) * temp_x + cos(move) * temp_z;
-      }
-      break;
-    case 'z':
-      for (unint i = 0; i < count_v * 3; i += 3) {
-        temp_x = (*vertex)[i];
-        temp_y = (*vertex)[i + 1];
-        temp_z = (*vertex)[i + 2];
+  //       (*vertex)[i] = cos(move) * temp_x + sin(move) * temp_z;
+  //       (*vertex)[i + 1] = temp_y;
+  //       (*vertex)[i + 2] = -sin(move) * temp_x + cos(move) * temp_z;
+  //     }
+  //     break;
+  //   case 'z':
+  //     for (unint i = 0; i < count_v * 3; i += 3) {
+  //       temp_x = (*vertex)[i];
+  //       temp_y = (*vertex)[i + 1];
+  //       temp_z = (*vertex)[i + 2];
 
-        (*vertex)[i] = cos(move) * temp_x - sin(move) * temp_y;
-        (*vertex)[i + 1] = sin(move) * temp_x + cos(move) * temp_y;
-        (*vertex)[i + 2] = temp_z;
-      }
-      break;
-  }
+  //       (*vertex)[i] = cos(move) * temp_x - sin(move) * temp_y;
+  //       (*vertex)[i + 1] = sin(move) * temp_x + cos(move) * temp_y;
+  //       (*vertex)[i + 2] = temp_z;
+  //     }
+  //     break;
+  // }
 }
 
 void Move::s21_move(double **vertex, double move, unint count_v, char direction) {
-  static double diff = 0;
-  unint i;
-  i = (direction == 'x') ? 0 : ((direction == 'y') ? 1 : ((direction == 'z') ? 2 : 0));
-  for (i = 0; i < count_v * 3; i += 3) (*vertex)[i] += move - diff;
-  diff = move;
+  // static double diff = 0;
+  // unint i;
+  // i = (direction == 'x') ? 0 : ((direction == 'y') ? 1 : ((direction == 'z') ? 2 : 0));
+  // for (i = 0; i < count_v * 3; i += 3) (*vertex)[i] += move - diff;
+  // diff = move;
 }
 
-void Scale::s21_move(double **vertex, double scale, unint count_v, char direction = 'y') {
+void Scale::s21_move(double **vertex, double scale, unint count_v, char direction) {
   if (scale == 0.0) return;
+  direction = direction;
   for (unint i = 0; i < count_v * 3; ++i) {
     (*vertex)[i] *= scale;
   }

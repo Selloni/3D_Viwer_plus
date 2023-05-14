@@ -14,7 +14,6 @@ TEST(test_open, 1) {
   for (int i = 0; i < 24; i++) {
     ASSERT_EQ(ff.get_arr_vertex()[i], vertex[i]);
   }
-  // ff.free();
 }
 
 TEST(test_open, 2) {
@@ -28,7 +27,6 @@ TEST(test_open, 2) {
   for (size_t i = 0; i < 72; i++) {
     ASSERT_EQ(ff.get_arr_facets()[i], indices_1[i]);
   }
-  // ff.free();
 }
 
 TEST(test_count_vert, 1) {
@@ -36,7 +34,6 @@ TEST(test_count_vert, 1) {
   std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   ASSERT_EQ(ff.get_count_vertex(), 8);
-  // ff.free();
 }
 
 TEST(test_count_facets, 2) {
@@ -44,7 +41,6 @@ TEST(test_count_facets, 2) {
   std::string file_path = "obj/cub.obj";
   ff.set_path(file_path);
   ASSERT_EQ(ff.get_count_facets(), 36);
-  // ff.free();
 }
 
 TEST(test_open, 3) {
@@ -75,7 +71,6 @@ TEST(moveX, 3) {
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
   }
-  // ff.free();
 }
 
 TEST(test_4_copy, 4) {
@@ -130,8 +125,7 @@ TEST(scale, 6) {
                        2.300000,  -2.300000, 2.300000,  -2.300000};
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
-  }
-  // ff.free(); 
+  } 
 }
 
 TEST(rotate, 7) {
@@ -232,7 +226,6 @@ TEST(Rotate, 2) {
   for (size_t i = 0; i < 24; i++) {
     ASSERT_NEAR(ff.get_arr_vertex()[i], vertex_1[i], 1e-6);
   }
-  // ff.free();
 }
 
 int main(int argc, char **argv) {

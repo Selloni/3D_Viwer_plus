@@ -23,7 +23,6 @@ void MainWindow::on_pushButton_clicked() {
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
   std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
-//  std::cout << " get_count_vertex = " << scene.facad.get_count_vertex() << std::endl;
 }
 
 void MainWindow::on_line_color_activated(int index) {
@@ -82,47 +81,48 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-    s21::Rotate rotate;
-    ui->sceneWidget->facad.fmove(rotate, arg1,'x');
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1,'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
-    s21::Rotate rotate;
-    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
-    s21::Rotate rotate;
-    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-    s21::Move move;
-    ui->sceneWidget->facad.fmove(move, arg1, 'x');
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-    s21::Move move;
-    ui->sceneWidget->facad.fmove(move, arg1, 'y');
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'y');
   ui->sceneWidget->update();
-  ;
+
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-    s21::Move move;
-    ui->sceneWidget->facad.fmove(move, arg1, 'z');
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
-    s21::Scale scale;
-    ui->sceneWidget->facad.fmove(scale, tmp, 'o');
+//    s21::Scale scale;
+//  ui->sceneWidget->facad.fmove(scale, tmp, 'o');
+    ui->sceneWidget->facad.test_move(tmp);
   ui->sceneWidget->update();
 }
 

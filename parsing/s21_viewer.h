@@ -53,10 +53,6 @@ namespace s21 {
 
   class Rotate : public Strategy {
     public:
-    //    static Rotate& getInstance() {
-    //   static Rotate instance;
-    //   return instance;
-    // }
       void s21_move(double **vertex, double move, unint count_v, char direction) override;
   };  // Rotate
 

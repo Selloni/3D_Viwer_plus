@@ -8,10 +8,9 @@ namespace s21 {
 class Facade {
   private:
     Controller controller_;
-
   public:
     Facade() {}
-    // ~Facade(){this->free();}
+    ~Facade(){}
     using unit = unsigned int;
     static Facade& getInstance() {
       static Facade instance;
@@ -20,6 +19,7 @@ class Facade {
     // MainWindow MainWindow = new MainWindow();
     bool set_path(std::string);
     void free();
+    void test_move(double scale);
     unit get_count_vertex() {return controller_.obj.count_vert;}
     unit get_count_facets() { return controller_.obj.count_facets;}
     double *get_arr_vertex() {return controller_.obj.vertexes;}
