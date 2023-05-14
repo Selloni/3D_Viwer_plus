@@ -21,8 +21,7 @@ MainWindow::~MainWindow() {
 void MainWindow::on_pushButton_clicked() {
   qpath_file =
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
-  QByteArray ba = qpath_file.toLocal8Bit();  // перевод из Qstring in *str
-  char *path_file = ba.data();
+  std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
 }
 
@@ -43,7 +42,6 @@ void MainWindow::on_line_dashed_clicked() {
 
 void MainWindow::on_line_width_valueChanged(int value) {
   ui->sceneWidget->l_w = value;
-  ui->line_progress->setValue(value);
   ui->sceneWidget->update();
 }
 
@@ -82,53 +80,63 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
-             ui->sceneWidget->qcount_vert);
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1,'x'); 
+  ui->sceneWidget->facad.Rotate(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'y', arg1,
-             ui->sceneWidget->qcount_vert);
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1, 'y');
+    ui->sceneWidget->facad.Rotate(arg1, 'y');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'z', arg1,
-             ui->sceneWidget->qcount_vert);
+//    s21::Rotate rotate;
+//    ui->sceneWidget->facad.fmove(rotate, arg1, 'z');
+    ui->sceneWidget->facad.Rotate(arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-  s21_moveX(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'x');
+    ui->sceneWidget->facad.Move(arg1, 'x');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-  s21_moveY(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'y');
+    ui->sceneWidget->facad.Move(arg1, 'y');
   ui->sceneWidget->update();
-  ;
+
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-  s21_moveZ(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+//    s21::Move move;
+//    ui->sceneWidget->facad.fmove(move, arg1, 'z');
+    ui->sceneWidget->facad.Move(arg1, 'z');
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
-  s21_scale(&ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
+//    s21::Scale scale;
+//  ui->sceneWidget->facad.fmove(scale, tmp, 'o');
+    ui->sceneWidget->facad.Scale(tmp);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_actioninfo_triggered() {
-  QString a = QString::number(ui->sceneWidget->qcount_vert);
-  QString b = QString::number(ui->sceneWidget->qcount_facets);
+  QString a = QString::number(ui->sceneWidget->count_v);
+  QString b = QString::number(ui->sceneWidget->count_vert_fac().second);
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
-                 "Facets: " + b + '\n' + "Authors: Yakov and other peers" + '\n' +
+                 "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
-
   QMessageBox::information(this, tr("Info"), info);
 }
 

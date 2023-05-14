@@ -1,0 +1,25 @@
+# Debug files
+*.dSYM/
+.vscode
+
+# Object files
+*.o
+
+
+# Executables
+*.exe
+*.out
+*.app
+<<<<<<< HEAD
+<<<<<<< HEAD
+build-3DWieve-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+=======
+
+build-3DWieve-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+
+
+>>>>>>> 78be84ec6614420c7ac0bf19785e4acaa6e0f013
+=======
+
+*-3DWieve-Desktop_x86_darwin_generic_mach_o_64bit-Debug
+>>>>>>> c81b2b51c0f8d32a16838d744221c448da785167
