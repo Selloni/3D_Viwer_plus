@@ -60,11 +60,19 @@ void s21::Facade::Rotate(double scale, char direction) {
 }
 
 void s21::Facade::Move(double scale, char direction) {
-  static double diff = 0;
-  unit i;
-  i = (direction == 'x') ? 0 : ((direction == 'y') ? 1 : ((direction == 'z') ? 2 : 0));
-  for (i = 0; i < GetCountVertex() * 3; i += 3) GetArrVertex()[i] += scale - diff;
-  diff = scale;
+  static double diff_x = 0;
+  static double diff_y = 0;
+  static double diff_z = 0;
+  if (direction == 'x') {
+    for (unit i = 0; i < GetCountVertex() * 3; i += 3) GetArrVertex()[i] += scale - diff_x;
+    diff_x = scale;
+  } else if (direction == 'y') {
+    for (unit i = 1; i < GetCountVertex() * 3; i += 3) GetArrVertex()[i] += scale - diff_y;
+    diff_y = scale;
+  } else {
+    for (unit i = 2; i < GetCountVertex() * 3; i += 3) GetArrVertex()[i] += scale - diff_z;
+    diff_z = scale;
+  }
 }
 
 void s21::Facade::FreeMemory(){

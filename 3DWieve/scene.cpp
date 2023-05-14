@@ -54,8 +54,6 @@ void Scene::paintGL() {
     glRotatef(yRot, 0, 1, 0);
     glRotatef(zRot, 0, 0, 1);
     draw();
-    //        update();
-    //        saveSetting();
   }
 }
 void Scene::draw() {
