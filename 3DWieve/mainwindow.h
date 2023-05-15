@@ -14,6 +14,7 @@
 
 
 #include "../parsing/s21_viewer.h"
+#include "../Facade/s21_facade.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -99,5 +100,8 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   Scene scene;
+  s21::Move move_;
+  s21::Rotate rotate_;
+  s21::Scale scale_;
 };
 #endif  // MAINWINDOW_H

@@ -58,13 +58,17 @@ void s21::Move::transform(double **vertex, char xyz, double angle, unint count) 
   }
 }
 
-void s21::Rotate::transform(double **vertex, char xyz, double angle, unint count) {
+void s21::Scale::transform(double **vertex, char xyz, double angle, unint count) {
   if (angle == 0.0) return;
   xyz=xyz;
   for (unint i = 0; i < count * 3; ++i) {
     (*vertex)[i] *= angle;
   }
 
+}
+
+void s21::Facade::transform(s21::Strategy &transform,double **vertex, char xyz, double angle, unint count) {
+   transform.transform(vertex, xyz, angle, count);
 }
 
 
