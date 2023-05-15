@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
   record_time = new QTimer(this);
   is_recording = false;
   connect(record_time, &QTimer::timeout, this, &MainWindow::recording);
+  connect(record_time, &QTimer::timeout, this, &MainWindow::updateCountdown);
 }
 
 MainWindow::~MainWindow() {
@@ -176,6 +177,27 @@ void MainWindow::recording() {
     saveGIF();
     record_time->stop();
   }
+}
+
+void MainWindow::updateCountdown() {
+    countdown++;
+    if (countdown == 0) {
+        ui->countdownLabel->setText("Запись\n5 секунд");
+    } else if (countdown == 10) {
+        ui->countdownLabel->setText("Запись\n4 секунды");
+    } else if (countdown == 20) {
+        ui->countdownLabel->setText("Запись\n3 секунды");
+    } else if (countdown == 30) {
+        ui->countdownLabel->setText("Запись\n2 секунды");
+    } else if (countdown == 40) {
+        ui->countdownLabel->setText("Запись\n1 секунда");
+    } else if (countdown == 50) {
+        ui->countdownLabel->setText("Запись\n0 секунд");
+    }
+    if (countdown == 51) {
+        ui->countdownLabel->clear();
+        countdown = 0;
+    }
 }
 
 void MainWindow::saveGIF() {

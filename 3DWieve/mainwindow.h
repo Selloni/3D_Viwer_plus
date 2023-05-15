@@ -97,11 +97,17 @@ class MainWindow : public QMainWindow {
 
   void on_action_triggered();
 
+  void updateCountdown();
+
  private:
   Ui::MainWindow *ui;
   Scene scene;
+<<<<<<< HEAD
   s21::Move move_;
   s21::Rotate rotate_;
   s21::Scale scale_;
+=======
+  int countdown = 0;
+>>>>>>> 42663596ce1074d0268de6d22965e40294dc8754
 };
 #endif  // MAINWINDOW_H
