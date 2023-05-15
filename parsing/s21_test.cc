@@ -69,6 +69,7 @@ TEST(moveX, 3) {
   std::string file_path = "obj/cub.obj";
   if (controller_.set_path_file(file_path)) {
     s21::Move move_;
+    // move_.transform(&controller_.obj.vertexes, 'x', 0.9, controller_.obj.count_vert);
     controller_.fasade_.transform(move_, &controller_.obj.vertexes, 'x', 0.9, controller_.obj.count_vert);
     // ff.Move(0.9, 'x');
     // mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
