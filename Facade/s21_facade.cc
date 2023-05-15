@@ -1,5 +1,73 @@
 #include "s21_facade.h"
 
+
+void s21::Rotate::transform(double **vertex, char xyz, double angle, unint count_v) {
+  double temp_x = 0.0;
+  double temp_y = 0.0;
+  double temp_z = 0.0;
+  switch (xyz) {
+    case 'x':
+      for (unint i = 0; i < count_v * 3; i += 3) {
+        temp_x = (*vertex)[i];
+        temp_y = (*vertex)[i + 1];
+        temp_z = (*vertex)[i + 2];
+
+        (*vertex)[i] = temp_x;
+        (*vertex)[i + 1] = cos(angle) * temp_y - sin(angle) * temp_z;
+        (*vertex)[i + 2] = sin(angle) * temp_y + cos(angle) * temp_z;
+      }
+      break;
+    case 'y':
+      for (unint i = 0; i < count_v * 3; i += 3) {
+        temp_x = (*vertex)[i];
+        temp_y = (*vertex)[i + 1];
+        temp_z = (*vertex)[i + 2];
+
+        (*vertex)[i] = cos(angle) * temp_x + sin(angle) * temp_z;
+        (*vertex)[i + 1] = temp_y;
+        (*vertex)[i + 2] = -sin(angle) * temp_x + cos(angle) * temp_z;
+      }
+      break;
+    case 'z':
+      for (unint i = 0; i < count_v * 3; i += 3) {
+        temp_x = (*vertex)[i];
+        temp_y = (*vertex)[i + 1];
+        temp_z = (*vertex)[i + 2];
+
+        (*vertex)[i] = cos(angle) * temp_x - sin(angle) * temp_y;
+        (*vertex)[i + 1] = sin(angle) * temp_x + cos(angle) * temp_y;
+        (*vertex)[i + 2] = temp_z;
+      }
+      break;
+  }
+}
+
+void s21::Move::transform(double **vertex, char xyz, double angle, unint count) {
+  if (xyz = 'x') {
+    static double diff1 = 0;
+    for (unint i = 0; i < count * 3; i += 3) (*vertex)[i] += angle - diff1;
+    diff1 = angle;
+  } else if (xyz = 'y'){
+    static double diff2 = 0;
+    for (unint i = 1; i < count * 3; i += 3) (*vertex)[i] += angle - diff2;
+    diff2 = angle;
+  } else {
+    static double diff3 = 0;
+    for (unint i = 2; i < count * 3; i += 3) (*vertex)[i] += angle - diff3;
+    diff3 = angle;
+  }
+}
+
+void s21::Rotate::transform(double **vertex, char xyz, double angle, unint count) {
+  if (angle == 0.0) return;
+  xyz=xyz;
+  for (unint i = 0; i < count * 3; ++i) {
+    (*vertex)[i] *= angle;
+  }
+
+}
+
+
 // bool s21::Facade::SetPath(std::string str) {
 // //  free();
 //   bool flag = controller_.set_path_file(str);
@@ -71,22 +139,22 @@
 //   //  controller_.free();
 //  }
 
-void s21::Facade::s21_rotate(double **vertex, char xyz, double angle, unint i) {
-  model_.s21_rotate(vertex, xyz, angle, i);
-}
+// void s21::Facade::s21_rotate(double **vertex, char xyz, double angle, unint i) {
+//   model_.s21_rotate(vertex, xyz, angle, i);
+// }
 
-void s21::Facade::s21_moveX(double **vertex, double move_x, unint count_v) {
-  model_.s21_moveX(vertex, move_x, count_v);
-}
+// void s21::Facade::s21_moveX(double **vertex, double move_x, unint count_v) {
+//   model_.s21_moveX(vertex, move_x, count_v);
+// }
 
-void s21::Facade::s21_moveY(double **vertex, double move_y, unint count_v) {
-  model_.s21_moveY(vertex, move_y, count_v);
-}
+// void s21::Facade::s21_moveY(double **vertex, double move_y, unint count_v) {
+//   model_.s21_moveY(vertex, move_y, count_v);
+// }
 
-void s21::Facade::s21_moveZ(double **vertex, double move_z, unint count_v) {
-  model_.s21_moveZ(vertex, move_z, count_v);
-}
+// void s21::Facade::s21_moveZ(double **vertex, double move_z, unint count_v) {
+//   model_.s21_moveZ(vertex, move_z, count_v);
+// }
 
-void s21::Facade::s21_scale(double **vertex, float scale, unint count_v) {
-  model_.s21_scale(vertex, scale, count_v);
-}
+// void s21::Facade::s21_scale(double **vertex, float scale, unint count_v) {
+//   model_.s21_scale(vertex, scale, count_v);
+// }
