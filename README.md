@@ -1,12 +1,19 @@
-# 3DViewer_v2.0
+# 3DViewer v2.0
 
 ## Info
 A simple program for viewing wireframe models from .obj files
+The program developed in C++ language of C++17 standard
 
 ## Dependencies
 1. Qt6.2 + QtOpenGLWidgets + OpenGL
 2. gcc + g++
 3. Make
+
+## Patterns
+1. Strategy
+2. MVC
+3. Facade
+4. Singleton
 
 
 ## Install
