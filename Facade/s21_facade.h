@@ -7,50 +7,99 @@
 
 namespace s21 {
 
+
 class Strategy {
     public:
     using unint = unsigned int;
-  virtual void transform(double **vertex, char xyz, double angle, unint count) = 0;
+  virtual void transform(double **vertex, double angle, unint count) = 0;
   virtual ~Strategy() = default;
 };
 
 class MoveX: public Strategy {
+  MoveX(){}
   public:
-  void transform(double **vertex, char xyz, double angle, unint count)override;
-  ~MoveX()override{}
+  static MoveX& GetInstance() {
+    static MoveX instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
+  ~MoveX()override{} 
 };
 
 class MoveY: public Strategy {
+  MoveY(){}
   public:
-  void transform(double **vertex, char xyz, double angle, unint count)override;
+  static MoveY& GetInstance() {
+    static MoveY instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
   ~MoveY()override{}
 };
 
 class MoveZ: public Strategy {
+  MoveZ(){}
   public:
-  void transform(double **vertex, char xyz, double angle, unint count)override;
+   static MoveZ& GetInstance() {
+    static MoveZ instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
   ~MoveZ()override{}
 };
 
 class Scale: public Strategy {
+  Scale(){}
   public:
-  void transform(double **vertex, char xyz, double angle, unint count)override;
+    static Scale& GetInstance() {
+    static Scale instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
   ~Scale()override{}
 };
 
-class Rotate: public Strategy {
+
+class RotateX: public Strategy {
+  RotateX(){}
   public:
-  void transform(double **vertex, char xyz, double angle, unint count)override;
-  ~Rotate()override{}
+  public:
+   static RotateX& GetInstance() {
+    static RotateX instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
+  ~RotateX()override{}
+};
+
+class RotateY: public Strategy {
+  RotateY(){}
+  public:
+   static RotateY& GetInstance() {
+    static RotateY instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
+  ~RotateY()override{}
+};
+
+class RotateZ: public Strategy {
+  RotateZ(){}
+  public:
+   static RotateZ& GetInstance() {
+    static RotateZ instance;
+    return instance;
+  }
+  void transform(double **vertex, double angle, unint count)override;
+  ~RotateZ()override{}
 };
 
 
 class Facade {
   private:
-    // Model model_;
   public:
     using unint = unsigned int ;
-    void transform(s21::Strategy &transform,double **vertex, char xyz, double angle, unint count);
+    void transform(s21::Strategy &transform,double **vertex, double angle, unint count);
 }; // Facade
 
 

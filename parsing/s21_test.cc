@@ -70,7 +70,7 @@ TEST(moveX, 3) {
   if (controller_.set_path_file(file_path)) {
     s21::MoveX move_;
     // move_.transform(&controller_.obj.vertexes, 'x', 0.9, controller_.obj.count_vert);
-    // controller_.fasade_.transform(move_, &controller_.obj.vertexes, 'x', 0.9, controller_.obj.count_vert);
+    controller_.fasade_.transform(move_, &controller_.obj.vertexes, 'x', 0.9, controller_.obj.count_vert);
     // ff.Move(0.9, 'x');
     // mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
     double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
