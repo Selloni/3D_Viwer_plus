@@ -9,9 +9,9 @@
 
 #define GL_SILENCE_DEPRECATION
 
-extern "C" {
+
 #include "../parsing/s21_viewer.h"
-}
+
 
 // typedef struct DATA_QT {
 //     unsigned int count_vert; // количество v

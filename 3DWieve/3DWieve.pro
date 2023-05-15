@@ -17,10 +17,10 @@ SOURCES += \
     ../GIFCreation/gifLib/gif_hash.c \
     ../GIFCreation/gifLib/gifalloc.c \
     ../GIFCreation/gifLib/quantize.c \
-    ../parsing/s21_viewer.c \
+    ../parsing/s21_viewer.cc \
     main.cpp \
     mainwindow.cpp \
-    scene.cpp
+    scene.cpp \
 
 HEADERS += \
     ../GIFCreation/gifImage/qgifglobal.h \

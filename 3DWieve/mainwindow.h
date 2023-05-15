@@ -12,9 +12,9 @@
 #include "../GIFCreation/gifImage/qgifimage.h"
 #include "scene.h"
 
-extern "C" {
+
 #include "../parsing/s21_viewer.h"
-}
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
