@@ -17,7 +17,7 @@ uninstall: clean
 	rm -rf build
 
 dvi:
-	open 'https://github.com/Selloni/3D_Viever_C#readme'
+	open 'https://github.com/Selloni/3D_Viwer_plus#readme'
 
 dist:
 	rm -rf Archive_3DViewer
