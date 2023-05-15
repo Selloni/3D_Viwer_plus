@@ -9,11 +9,6 @@ Scene::Scene(QWidget* parent)
                            QSettings::IniFormat);
 }
 
-//s21::data_t obj = {'\0'};
-
-//double arr[] = {0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 0};  // масив вершин
-//unsigned int mass[] = {1, 0, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4};  // масив соединений
-
 void Scene::free_mem() {
   if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
     free(controller_.obj.facets);
@@ -43,15 +38,6 @@ void Scene::read_file(char* path_file) {
     qfacets = 0;
   }
   int err_flag = 1;
-  //    int len = strlen(path_file);
-  //    for (int i = 0; len > 1 ; --len) {
-  //        if (path_file[len] != '/') {
-  //            str[i] = path_file[len];
-  //            i++;
-  //        } else {
-  //            break;
-  //        }
-  //    }
   err_flag = controller_.set_path_file(path_file);
   if (err_flag) {
     QMessageBox msgBox;
@@ -77,8 +63,6 @@ void Scene::resizeGL(int w, int h) {
 
 void Scene::paintGL() {
   projection(proj);
-  //        obj.count_vert = 4;
-  //        obj.count_facets = 12;
   glClearColor(back_red / 255.0f, back_green / 255.0f, back_blue / 255.0f,
                back_alpha / 255.0f);  //  colo bakcground
   if (controller_.obj.count_facets > 3) {
