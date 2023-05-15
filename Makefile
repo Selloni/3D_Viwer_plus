@@ -3,11 +3,6 @@ GCC = $(G) -Wall -Wextra -Werror -Wuninitialized
 TEST_LIBS = -lgtest -lgmock -pthread
 FLAG_LEAKS = -lgtest -lstdc++ -lpthread -std=c++17 -g -lcheck
 
-
-ifeq (${OS}, Linux)
-	CHECK_FLAGS += -lsubunit -lrt
-endif
-
 all: install tests
 
 install: 

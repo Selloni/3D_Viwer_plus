@@ -82,43 +82,43 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
+  ui->sceneWidget->controller_.s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
              ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_rotate(&ui->sceneWidget->qvertexes, 'y', arg1,
+  ui->sceneWidget->controller_.s21_rotate(&ui->sceneWidget->qvertexes, 'y', arg1,
              ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_rotate(&ui->sceneWidget->qvertexes, 'z', arg1,
+  ui->sceneWidget->controller_.s21_rotate(&ui->sceneWidget->qvertexes, 'z', arg1,
              ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_moveX(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+  ui->sceneWidget->controller_.s21_moveX(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_moveY(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+  ui->sceneWidget->controller_.s21_moveY(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-  ui->sceneWidget->model_.s21_moveZ(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+  ui->sceneWidget->controller_.s21_moveZ(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
-  ui->sceneWidget->model_.s21_scale(&ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
+  ui->sceneWidget->controller_.s21_scale(&ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 

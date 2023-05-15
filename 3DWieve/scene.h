@@ -11,6 +11,7 @@
 
 
 #include "../parsing/s21_viewer.h"
+#include "../Facade/s21_facade.h"
 #include "../Controller/s21_controller.h"
 
 
@@ -43,7 +44,7 @@ class Scene : public QOpenGLWidget {
   void draw();
 
  public:
-  s21::Model model_;
+//  s21::Model model_;
   s21::Controller controller_;
   void saveSetting();
   void loadSetting();
