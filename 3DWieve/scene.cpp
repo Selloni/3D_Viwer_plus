@@ -9,18 +9,19 @@ Scene::Scene(QWidget* parent)
                            QSettings::IniFormat);
 }
 
-s21::data_t obj = {'\0'};
+//s21::data_t obj = {'\0'};
+
 double arr[] = {0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 0};  // масив вершин
 unsigned int mass[] = {1, 0, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4};  // масив соединений
 
 void Scene::free_mem() {
-  if (obj.facets != NULL && obj.vertexes != NULL) {
-    free(obj.facets);
-    free(obj.vertexes);
-    obj.facets = 0;
-    obj.vertexes = 0;
-    obj.count_facets = 0;
-    obj.count_vert = 0;
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
     qcount_facets = 0;
     qcount_vert = 0;
     qvertexes = 0;
@@ -29,13 +30,13 @@ void Scene::free_mem() {
 }
 
 void Scene::read_file(char* path_file) {
-  if (obj.facets != NULL && obj.vertexes != NULL) {
-    free(obj.facets);
-    free(obj.vertexes);
-    obj.facets = 0;
-    obj.vertexes = 0;
-    obj.count_facets = 0;
-    obj.count_vert = 0;
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
     qcount_facets = 0;
     qcount_vert = 0;
     qvertexes = 0;
@@ -51,17 +52,17 @@ void Scene::read_file(char* path_file) {
   //            break;
   //        }
   //    }
-  err_flag = model_.s21_count_v_f(path_file, obj);
+  err_flag = controller_.set_path_file(path_file);
   if (err_flag) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
   } else {
-    model_.s21_read(path_file, obj);
-    qcount_facets = obj.count_facets;
-    qcount_vert = obj.count_vert;
-    qvertexes = obj.vertexes;
-    qfacets = obj.facets;
+    controller_.open(path_file);
+    qcount_facets = controller_.obj.count_facets;
+    qcount_vert = controller_.obj.count_vert;
+    qvertexes = controller_.obj.vertexes;
+    qfacets = controller_.obj.facets;
   }
 }
 
@@ -80,7 +81,7 @@ void Scene::paintGL() {
   //        obj.count_facets = 12;
   glClearColor(back_red / 255.0f, back_green / 255.0f, back_blue / 255.0f,
                back_alpha / 255.0f);  //  colo bakcground
-  if (obj.count_facets > 3) {
+  if (controller_.obj.count_facets > 3) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -95,14 +96,14 @@ void Scene::paintGL() {
   }
 }
 void Scene::draw() {
-  if (obj.count_facets > 3) {
+  if (controller_.obj.count_facets > 3) {
     glVertexPointer(3, GL_DOUBLE, 0, qvertexes);
     glEnableClientState(GL_VERTEX_ARRAY);
     veretex_stile(v_s);
     vertex_color(v_c);
     if (v_s != 0) {
       glPointSize(v_w);  // size point
-      glDrawArrays(GL_POINTS, 0, obj.count_vert);
+      glDrawArrays(GL_POINTS, 0, controller_.obj.count_vert);
     }
     line_color(l_c);
     line_style(l_s);

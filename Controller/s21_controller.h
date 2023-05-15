@@ -16,20 +16,37 @@ class Controller {
   bool set_path_file(std::string str) {
     return model_.s21_count_v_f(str, obj);
   }
-   void free() {
-     if (!obj.facets.empty()) {
-       obj.facets.clear();
-       obj.count_facets = 0;
-     }
-     if (!obj.vertexes.empty()) {
-       obj.vertexes.clear();
-       obj.count_vert = 0;
-     }
-     std::cout << "free()" << "\n";
-   }
+  //  void free() {
+  //    if (!obj.facets.empty()) {
+  //      obj.facets.clear();
+  //      obj.count_facets = 0;
+  //    }
+  //    if (!obj.vertexes.empty()) {
+  //      obj.vertexes.clear();
+  //      obj.count_vert = 0;
+  //    }
+  //    std::cout << "free()" << "\n";
+  //  }
   void open(std::string str) {
     model_.s21_read(str, obj);
   }
+
+//  void s21_rotate(double **vertex, char xyz, double angle, unint i) {
+//      model_.s21_rotate(vertex, xyz, angle, i);
+//  }
+//  void s21_moveX(double **vertex, double move_x, unint count_v){
+//      model_.s21_moveX(vertex, move_x, count_v);
+//  }
+//  void s21_moveY(double **vertex, double move_y, unint count_v){
+//      model_.s21_moveY(vertex, move_y, count_v);
+//  }
+//  void s21_moveZ(double **vertex, double move_z, unint count_v){
+//      model_.s21_moveZ(vertex, move_z, count_v);
+//  }
+//  void s21_scale(double **vertex, float scale, unint count_v){
+//      model_.s21_scale(vertex, scale, count_v);
+//  }
+  
 }; // Controller
 
 

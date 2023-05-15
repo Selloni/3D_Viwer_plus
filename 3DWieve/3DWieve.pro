@@ -30,6 +30,7 @@ HEADERS += \
     ../GIFCreation/gifLib/gif_lib.h \
     ../GIFCreation/gifLib/gif_lib_private.h \
     ../parsing/s21_viewer.h \
+    ../Controller/s21_controller.h \
     mainwindow.h \
     scene.h
 

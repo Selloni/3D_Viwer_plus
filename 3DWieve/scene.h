@@ -11,6 +11,7 @@
 
 
 #include "../parsing/s21_viewer.h"
+#include "../Controller/s21_controller.h"
 
 
 // typedef struct DATA_QT {
@@ -43,6 +44,7 @@ class Scene : public QOpenGLWidget {
 
  public:
   s21::Model model_;
+  s21::Controller controller_;
   void saveSetting();
   void loadSetting();
   void free_mem();
