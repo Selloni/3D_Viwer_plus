@@ -102,7 +102,9 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   Scene scene;
-  s21::Move move_;
+  s21::MoveX move_x;
+  s21::MoveY move_y;
+  s21::MoveZ move_z;
   s21::Rotate rotate_;
   s21::Scale scale_;
   int countdown = 0;

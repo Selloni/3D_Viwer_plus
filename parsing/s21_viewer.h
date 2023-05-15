@@ -31,11 +31,6 @@ namespace s21 {
     int s21_digit_supp(char ind);
     unint s21_space_for_Fsupp(std::string ch);
     unint s21_Fconnect(data_t &obj, std::string ch, unint index_f);
-    void s21_rotate(double **vertex, char xyz, double angle, unint i);
-    void s21_moveX(double **vertex, double move_x, unint count_v);
-    void s21_moveY(double **vertex, double move_y, unint count_v);
-    void s21_moveZ(double **vertex, double move_z, unint count_v);
-    void s21_scale(double **vertex, float scale, unint count_v);
   };
 }
 

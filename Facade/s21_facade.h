@@ -11,21 +11,37 @@ class Strategy {
     public:
     using unint = unsigned int;
   virtual void transform(double **vertex, char xyz, double angle, unint count) = 0;
+  virtual ~Strategy() = default;
 };
 
-class Move: public Strategy {
+class MoveX: public Strategy {
   public:
   void transform(double **vertex, char xyz, double angle, unint count)override;
+  ~MoveX()override{}
+};
+
+class MoveY: public Strategy {
+  public:
+  void transform(double **vertex, char xyz, double angle, unint count)override;
+  ~MoveY()override{}
+};
+
+class MoveZ: public Strategy {
+  public:
+  void transform(double **vertex, char xyz, double angle, unint count)override;
+  ~MoveZ()override{}
 };
 
 class Scale: public Strategy {
   public:
   void transform(double **vertex, char xyz, double angle, unint count)override;
+  ~Scale()override{}
 };
 
 class Rotate: public Strategy {
   public:
   void transform(double **vertex, char xyz, double angle, unint count)override;
+  ~Rotate()override{}
 };
 
 
@@ -34,8 +50,6 @@ class Facade {
     // Model model_;
   public:
     using unint = unsigned int ;
-    Facade() {}
-    ~Facade(){}
     void transform(s21::Strategy &transform,double **vertex, char xyz, double angle, unint count);
 }; // Facade
 

@@ -98,18 +98,18 @@ void MainWindow::on_rotateZ_valueChanged(double arg1) {
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-    ui->sceneWidget->controller_.fasade_.transform(move_, &ui->sceneWidget->qvertexes, 'x', arg1, ui->sceneWidget->qcount_vert);
+    ui->sceneWidget->controller_.fasade_.transform(move_x, &ui->sceneWidget->qvertexes, 'x', arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-     ui->sceneWidget->controller_.fasade_.transform(move_, &ui->sceneWidget->qvertexes, 'y', arg1, ui->sceneWidget->qcount_vert);
+     ui->sceneWidget->controller_.fasade_.transform(move_y, &ui->sceneWidget->qvertexes, 'y', arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-     ui->sceneWidget->controller_.fasade_.transform(move_, &ui->sceneWidget->qvertexes, 'z', arg1, ui->sceneWidget->qcount_vert);
+     ui->sceneWidget->controller_.fasade_.transform(move_z, &ui->sceneWidget->qvertexes, 'z', arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
