@@ -12,12 +12,14 @@ class Controller {
   s21::data_t obj;
   s21::Facade fasade_;
   Controller() {}
-  ~Controller() {
-  }
+  ~Controller() {}
   bool set_path_file(std::string str) {
     return model_.s21_count_v_f(str, obj);
   }
-
+  unint get_count_vertex() {return obj.count_vert;}
+  unint get_count_facets() {return obj.count_facets;}
+  double *get_arr_vertex() {return obj.vertexes;}
+  unint *get_arr_facets() {return obj.facets;}
   void open(std::string str) {
     model_.s21_read(str, obj);
   }  

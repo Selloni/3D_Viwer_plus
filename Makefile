@@ -1,8 +1,9 @@
-CC+FLAGS = gcc -std=c11 -Wall -Wextra -Werror
-GCOVFLAGS = -L. --coverage
-CHECK_FLAGS = -lcheck -lm -lpthread
+G = g++ -std=c++17
+GCC = $(G) -Wall -Wextra -Werror -Wuninitialized
+TEST_LIBS = -lgtest -lgmock -pthread
+FLAG_LEAKS = -lgtest -lstdc++ -lpthread -std=c++17 -g -lcheck
 
-all: install tests
+all: install test
 
 install: 
 	rm -rf build
@@ -24,8 +25,8 @@ dist:
 	mkdir Archive_3DViewer
 	tar -cf Archive_3DViewer/3DViewer.tar build
 
-tests:
-	parsing/s21_viewer.c parsing/s21_test.c -lcheck -o test.out
+test:
+	$(GCC) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc  -o test.out
 	./test.out
 
 check:
