@@ -205,18 +205,6 @@ void Scene::mouseMoveEvent(QMouseEvent* mouse) {
   update();
 }
 
-// void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-//{
-//   if(fov >= 1.0f && fov <= 45.0f)
-//   	fov -= yoffset;
-//   if(fov <= 1.0f)
-//   	fov = 1.0f;
-//   if(fov >= 45.0f)
-//   	fov = 45.0f;
-//   projection = glm::perspective(fov, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f,
-//   100.0f); glfwSetScrollCallback(window, scroll_callback);
-// }
-
 void Scene::saveSetting() {
   settings->setValue("l_c", l_c);
   settings->setValue("l_s", l_s);

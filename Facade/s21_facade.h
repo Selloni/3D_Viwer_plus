@@ -10,34 +10,34 @@ using unit = unsigned int;
 
 class Facade {
   private:
-    // Controller controller_;
     Model model_;
   public:
+    using unint = unsigned int ;
     Facade() {}
     ~Facade(){}
-    
-//    static Facade& getInstance() {
-//      static Facade instance;
-//      return instance;
-//    }
-
-    // bool SetPath(std::string);
-    // void FreeMemory();
-    // void Scale(double scale);
-    // unit GetCountVertex() {return controller_.obj.count_vert;}
-    // unit GetCountFacets() { return controller_.obj.count_facets;}
-    // double* GetArrVertex() {return controller_.obj.vertexes;}
-    // unit* GetArrFacets() {return controller_.obj.facets;}
-
-    // void Rotate(double scale, char direction);
-    // void Move(double scale, char direction);
-    void s21_rotate(double **vertex, char xyz, double angle, unint i);
-    void s21_moveX(double **vertex, double move_x, unint count_v);
-    void s21_moveY(double **vertex, double move_y, unint count_v);
-    void s21_moveZ(double **vertex, double move_z, unint count_v);
-    void s21_scale(double **vertex, float scale, unint count_v);
-  
+    // void s21_rotate(double **vertex, char xyz, double angle, unint i);
+    // void s21_moveX(double **vertex, double move_x, unint count_v);
+    // void s21_moveY(double **vertex, double move_y, unint count_v);
+    // void s21_moveZ(double **vertex, double move_z, unint count_v);
+    // void s21_scale(double **vertex, float scale, unint count_v);
 }; // Facade
+
+class Straregy {
+  virtual void transform(double **vertex, char xyz, double angle, unint count) = 0;
+};
+
+class Move: public Straregy {
+  void transform(double **vertex, char xyz, double angle, unint count)
+};
+
+class Scale: public Straregy {
+  void transform(double **vertex, char xyz, double angle, unint count)
+};
+
+class Rotate: public Straregy {
+  void transform(double **vertex, char xyz, double angle, unint count)
+};
+
 
 
 } // s21
