@@ -1,5 +1,5 @@
 #include "scene.h"
-
+//#include <iostream>
 
 Scene::Scene(QWidget* parent)
     : QOpenGLWidget(parent)
@@ -9,27 +9,61 @@ Scene::Scene(QWidget* parent)
                            QSettings::IniFormat);
 }
 
+//s21::data_t obj = {'\0'};
+
+double arr[] = {0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 0};  // масив вершин
+unsigned int mass[] = {1, 0, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4};  // масив соединений
+
 void Scene::free_mem() {
-    facad.FreeMemory();
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
+    qcount_facets = 0;
+    qcount_vert = 0;
+    qvertexes = 0;
+    qfacets = 0;
+  }
 }
 
-void Scene::read_file(std::string path_file) {
-    free_mem();
-  int err_flag = facad.SetPath(path_file);
+void Scene::read_file(char* path_file) {
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
+    qcount_facets = 0;
+    qcount_vert = 0;
+    qvertexes = 0;
+    qfacets = 0;
+  }
+  int err_flag = 1;
+  //    int len = strlen(path_file);
+  //    for (int i = 0; len > 1 ; --len) {
+  //        if (path_file[len] != '/') {
+  //            str[i] = path_file[len];
+  //            i++;
+  //        } else {
+  //            break;
+  //        }
+  //    }
+  err_flag = controller_.set_path_file(path_file);
   if (err_flag) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
- }
-    count_v = facad.GetCountVertex();
-  std::cout << " 1) GetCountVertex = " << facad.GetCountVertex() << std::endl;
-  std::cout << " 1) get_count = " << facad.GetCountFacets() << std::endl;
-
-}
-
-std::pair<unsigned int, unsigned int> Scene::count_vert_fac() {
-    std::pair<unsigned int, unsigned int> result = {facad.GetCountVertex(), facad.GetCountFacets()};
-    return result;
+  } else {
+    controller_.open(path_file);
+    qcount_facets = controller_.obj.count_facets;
+    qcount_vert = controller_.obj.count_vert;
+    qvertexes = controller_.obj.vertexes;
+    qfacets = controller_.obj.facets;
+  }
 }
 
 void Scene::initializeGL() {
@@ -43,36 +77,37 @@ void Scene::resizeGL(int w, int h) {
 
 void Scene::paintGL() {
   projection(proj);
+  //        obj.count_vert = 4;
+  //        obj.count_facets = 12;
   glClearColor(back_red / 255.0f, back_green / 255.0f, back_blue / 255.0f,
                back_alpha / 255.0f);  //  colo bakcground
-  if (facad.GetCountFacets() > 3) {
+  if (controller_.obj.count_facets > 3) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     glTranslatef(0, 0, -3);
     glRotatef(xRot, 1, 0, 0);  // для движения мышью
     glRotatef(yRot, 0, 1, 0);
     glRotatef(zRot, 0, 0, 1);
     draw();
+    //        update();
+    //        saveSetting();
   }
 }
 void Scene::draw() {
-  if (facad.GetCountFacets() > 3) {
-    glVertexPointer(3, GL_DOUBLE, 0, facad.GetArrVertex());
+  if (controller_.obj.count_facets > 3) {
+    glVertexPointer(3, GL_DOUBLE, 0, qvertexes);
     glEnableClientState(GL_VERTEX_ARRAY);
     veretex_stile(v_s);
     vertex_color(v_c);
     if (v_s != 0) {
       glPointSize(v_w);  // size point
-      glDrawArrays(GL_POINTS, 0, facad.GetCountVertex());
+      glDrawArrays(GL_POINTS, 0, controller_.obj.count_vert);
     }
     line_color(l_c);
     line_style(l_s);
-//    for (int i = 0; i != facad.GetCountFacets(); ++i) {
-//        qDebug()<<facad.GetArrFacets()[i] << "_";
-//    }
-    qDebug()<<facad.GetCountFacets() << "";
-    glDrawElements(GL_LINES, (facad.GetCountFacets() * 2), GL_UNSIGNED_INT, facad.GetArrFacets());
+    glDrawElements(GL_LINES, (qcount_facets * 2), GL_UNSIGNED_INT, qfacets);
     glLineWidth(l_w);  // size line
     glDisableClientState(GL_VERTEX_ARRAY);
   }
