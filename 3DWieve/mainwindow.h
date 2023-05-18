@@ -9,13 +9,10 @@
 #include <QTimer>
 #include <QUrl>
 
-#include "../GIFCreation/gifImage/qgifimage.h"
-#include "scene.h"
-
-
-#include "../parsing/s21_viewer.h"
 #include "../Facade/s21_facade.h"
-
+#include "../GIFCreation/gifImage/qgifimage.h"
+#include "../parsing/s21_viewer.h"
+#include "scene.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -104,18 +101,18 @@ class MainWindow : public QMainWindow {
   Scene scene;
   s21::MoveX move_x = s21::MoveX::GetInstance();
   s21::MoveY move_y = s21::MoveY::GetInstance();
-  s21::MoveZ move_z= s21::MoveZ::GetInstance();
-  s21::Scale scale_= s21::Scale::GetInstance();
-  s21::RotateX rotate_x= s21::RotateX::GetInstance();
-  s21::RotateY rotate_y= s21::RotateY::GetInstance();
-  s21::RotateZ rotate_z= s21::RotateZ::GetInstance();
-//  s21::MoveX move_x;
-//  s21::MoveY move_y;
-//  s21::MoveZ move_z;
-//  s21::Scale scale_;
-//  s21::RotateX rotate_x;
-//  s21::RotateY rotate_y;
-//  s21::RotateZ rotate_z;
+  s21::MoveZ move_z = s21::MoveZ::GetInstance();
+  s21::Scale scale_ = s21::Scale::GetInstance();
+  s21::RotateX rotate_x = s21::RotateX::GetInstance();
+  s21::RotateY rotate_y = s21::RotateY::GetInstance();
+  s21::RotateZ rotate_z = s21::RotateZ::GetInstance();
+  //  s21::MoveX move_x;
+  //  s21::MoveY move_y;
+  //  s21::MoveZ move_z;
+  //  s21::Scale scale_;
+  //  s21::RotateX rotate_x;
+  //  s21::RotateY rotate_y;
+  //  s21::RotateZ rotate_z;
   int countdown = 0;
 };
 #endif  // MAINWINDOW_H

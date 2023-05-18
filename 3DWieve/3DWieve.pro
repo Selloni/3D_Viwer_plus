@@ -31,11 +31,7 @@ HEADERS += \
     ../GIFCreation/gifLib/gif_lib.h \
     ../GIFCreation/gifLib/gif_lib_private.h \
     ../parsing/s21_viewer.h \
-<<<<<<< HEAD
-    ../Controller/s21_Controller.h \
-=======
     ../Controller/s21_controller.h \
->>>>>>> origin/evetteis
     ../Facade/s21_facade.h \
     mainwindow.h \
     scene.h

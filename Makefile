@@ -3,22 +3,12 @@ GCC = $(G) -Wall -Wextra -Werror -Wuninitialized
 TEST_LIBS = -lgtest -lgmock -pthread
 FLAG_LEAKS = -lgtest -lstdc++ -lpthread -std=c++17 -g -lcheck
 
-
-
-ifeq (${OS}, Linux)
-	CHECK_FLAGS += -lsubunit -lrt
-endif
-
-b:
-	$(G) parsing/s21_viewer.cc parsing/main.cc Facade/s21_facade.cc -g && ./a.out
-
-
 all: install test
+
 install: 
 	rm -rf build
 	mkdir build
-	cd build/ && qmake ../3DWieve && make
-	open build/3DWieve.app
+	cd build/ && qmake ../3DWieve && make -j6
 
 open:
 	open build/3DWieve.app
@@ -35,8 +25,7 @@ dist:
 	tar -cf Archive_3DViewer/3DViewer.tar build
 
 test:
-	$(G) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc -o test.out
-# ./test.out --gtest_repeat=3 --gtest_break_on_failure
+	$(GCC) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc  -o test.out
 	./test.out
 
 check:
@@ -66,7 +55,7 @@ check:
 	rm .clang-format
 
 clean:
-	rm -rf *.o *.a
+	rm -rf build/*.o *.a
 	rm -rf *.gcda *.gcno *.info
 	rm -rf s21_test report
 	rm -rf a.out

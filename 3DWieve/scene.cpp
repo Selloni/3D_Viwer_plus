@@ -11,8 +11,8 @@ Scene::Scene(QWidget* parent)
 
 void Scene::free_mem() {
   if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
-    free(controller_.obj.facets);
-    free(controller_.obj.vertexes);
+    delete[] controller_.obj.facets;
+    delete[] controller_.obj.vertexes;
     controller_.obj.facets = 0;
     controller_.obj.vertexes = 0;
     controller_.obj.count_facets = 0;
@@ -25,18 +25,7 @@ void Scene::free_mem() {
 }
 
 void Scene::read_file(char* path_file) {
-  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
-    free(controller_.obj.facets);
-    free(controller_.obj.vertexes);
-    controller_.obj.facets = 0;
-    controller_.obj.vertexes = 0;
-    controller_.obj.count_facets = 0;
-    controller_.obj.count_vert = 0;
-    qcount_facets = 0;
-    qcount_vert = 0;
-    qvertexes = 0;
-    qfacets = 0;
-  }
+  free_mem();
   int err_flag = 1;
   err_flag = controller_.set_path_file(path_file);
   if (err_flag) {
@@ -69,6 +58,7 @@ void Scene::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
     glTranslatef(0, 0, -3);
     glRotatef(xRot, 1, 0, 0);  // для движения мышью
     glRotatef(yRot, 0, 1, 0);
@@ -90,7 +80,7 @@ void Scene::draw() {
     }
     line_color(l_c);
     line_style(l_s);
-    glDrawElements(GL_LINES, (facad.get_count_facets() * 2), GL_UNSIGNED_INT, facad.get_arr_facets());
+    glDrawElements(GL_LINES, (qcount_facets * 2), GL_UNSIGNED_INT, qfacets);
     glLineWidth(l_w);  // size line
     glDisableClientState(GL_VERTEX_ARRAY);
   }
