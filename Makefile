@@ -8,6 +8,9 @@ ifeq (${OS}, Linux)
 	CHECK_FLAGS += -lsubunit -lrt
 endif
 
+b:
+	$(G) parsing/s21_viewer.cc parsing/main.cc Facade/s21_facade.cc -g && ./a.out
+
 all: install tests
 
 install: 
@@ -31,7 +34,8 @@ dist:
 	tar -cf Archive_3DViewer/3DViewer.tar build
 
 test:
-	$(GCC) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc  -o test.out
+	$(G) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc -o test.out
+# ./test.out --gtest_repeat=3 --gtest_break_on_failure
 	./test.out
 
 gcov_report:

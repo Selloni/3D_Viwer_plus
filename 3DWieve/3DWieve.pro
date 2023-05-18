@@ -17,7 +17,8 @@ SOURCES += \
     ../GIFCreation/gifLib/gif_hash.c \
     ../GIFCreation/gifLib/gifalloc.c \
     ../GIFCreation/gifLib/quantize.c \
-    ../parsing/s21_viewer.cс \
+    ../parsing/s21_viewer.cc \
+    ../Facade/s21_facade.cc \
     main.cpp \
     mainwindow.cpp \
     scene.cpp
@@ -31,6 +32,7 @@ HEADERS += \
     ../GIFCreation/gifLib/gif_lib_private.h \
     ../parsing/s21_viewer.h \
     ../Controller/s21_Controller.h \
+    ../Facade/s21_facade.h \
     mainwindow.h \
     scene.h
 

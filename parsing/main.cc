@@ -1,26 +1,23 @@
 
 #include "../Controller/s21_Controller.h"
+#include "../Facade/s21_facade.h"
+
 
 int main () {
-  s21::Controller pp;
-  // data_t obj;
-  pp.set_path_file("../obj/cub.obj");
-  pp.open("../obj/cub.obj");
-  // std::string file_path = "../obj/cub.obj";
-  // s21_count_v_f(file_path, &obj);
-  // s21_read(file_path, &obj);
-  double vertex[24] = {1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
-                       1.000000,  -1.000000, -1.000000, 1.000000,  -1.000000,
-                       -1.000000, -1.000000, 1.000000,  1.000000,  -0.999999,
-                       0.999999,  1.000000,  1.000001,  -1.000000, 1.000000,
-                       1.000000,  -1.000000, 1.000000,  -1.000000};
-  // double tmp = pp.get_arr_facets();
-  for (int i = 0; i < 24; i++) {
-    std::cout << "my::" << pp.get_arr_vertex()[i] << "  test::" << vertex[i] << '\n';
+  s21::Facade ff = s21::Facade::getInstance();
+  std::string file_path = "obj/cub.obj";
+  ff.set_path(file_path);
+  s21::Move move;
+  ff.fmove(move, 0.9, 'x');
+  // mv.s21_move(&obj.vertexes, 0.9, obj.count_vert * 3, 'x');
+  double vertex_1[] = {1.900000,  -1.000000, -1.000000, 1.900000,  -1.000000,
+                       1.000000,  -0.100000, -1.000000, 1.000000,  -0.100000,
+                       -1.000000, -1.000000, 1.900000,  1.000000,  -0.999999,
+                       1.899999,  1.000000,  1.000001,  -0.100000, 1.000000,
+                       1.000000,  -0.100000, 1.000000,  -1.000000}; 
+  for (size_t i = 0; i < 24; i++) {
+    std::cout << ff.get_arr_vertex()[i] <<"  "<<  vertex_1[i] << "\n" ;
   }
-  for (int i = 0 ; i < 36*2; ++i) {
-    std::cout << pp.get_arr_facets()[i];
-  }
-  // delete(obj.facets);
-  // delete(obj.vertexes);
+  ff.free();
+
 }

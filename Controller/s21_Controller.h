@@ -5,44 +5,31 @@
 
 namespace s21{
 class Controller {
-  s21::Model model_;
-  s21::Model::data_t obj;
+  // protected:
   public:
-  using unit = unsigned int;
-  unit get_count_vertex() {return obj.count_vert;}
-  unit get_count_facets() {return obj.count_facets;}
-  double *get_arr_vertex() {return obj.vertexes;}
-  unit *get_arr_facets() {return obj.facets;}
-  bool set_path_file(std::string str) {
-    return model_.s21_count_v_f(str, &obj);
+  s21::Model model_;
+  s21::data_t obj;
+  Controller() {}
+  ~Controller() {
+    // this->free();
   }
-  void free(){
-    delete[] obj.facets;
-    delete[] obj.vertexes;
+  bool set_path_file(std::string str) {
+    return model_.s21_count_v_f(str, obj);
+  }
+  void free() {
+    if (obj.facets != nullptr) {
+      delete[] obj.facets;
+        obj.count_facets = 0;
+    }
+    if (obj.count_vert) {
+      delete[] obj.vertexes;
+        obj.count_vert = 0;
+    }
   }
   void open(std::string str) {
-    model_.s21_read(str, &obj);
+    model_.s21_read(str, obj);
   }
 }; // Controller
-
-// class Controller {
-//   private:
-//     Model model_;
-//     // Model::data_t obj;
-
-//   public:
-//     bool getCountVF(std::string file_name, Model::DATA *data) { 
-//       return model_.s21_count_v_f(file_name, data); 
-//     }
-
-//     void readFile(std::string file_name, Model::DATA *data) { 
-//       return model_.s21_read(file_name, data); 
-//     }
-
-//     void moveVertices(double **vertex, double move, Model::unint count_v, char direction) { 
-//       return model_.s21_move(vertex, move, count_v, direction); 
-//     }
-// };
 
 
 } // s21

@@ -1,7 +1,7 @@
 #include "s21_viewer.h"
 
 namespace s21 {
-bool Model::s21_count_v_f(std::string file_name, data_t *obj) {  // открыли и посчитали, сколько нам потребуется памяти
+bool Model::s21_count_v_f(std::string file_name, data_t &obj) {  // открыли и посчитали, сколько нам потребуется памяти
   std::ifstream text;
   std::string ch;
   // int len = ch.length();  //длина строки
@@ -10,16 +10,16 @@ bool Model::s21_count_v_f(std::string file_name, data_t *obj) {  // открыл
   if (text.is_open()) {
     while (std::getline(text, ch)) {
       if (ch[0] == 'v' && ch[1] == ' ') {  // vertex
-        obj->count_vert++;
+        obj.count_vert++;
       } else if (ch[0] == 'f' && ch[1] == ' ') {  // facets
-        obj->count_facets += s21_space_for_Fsupp(ch);
+        obj.count_facets += s21_space_for_Fsupp(ch);
       }
     }
     text.close();
   } else {
     result = 1;
   }
-  if (obj->count_vert < 3) {
+  if (obj.count_vert < 3) {
     result = 1;
   }
   return result;
@@ -39,14 +39,14 @@ Model::unint Model::s21_space_for_Fsupp(std::string ch) {
 
 using namespace std;
 
-void Model::s21_read(std::string file_name, data_t *obj) {
+void Model::s21_read(std::string file_name, data_t &obj) {
   std::ifstream text;
   unint index_v = 0;
   unint index_f = 0;
   std::string ch;
   std::string tmp;
-  obj->vertexes = new double[obj->count_vert * 3 + 1]; 
-  obj->facets = new unint[obj->count_facets * 2 + 1] ;
+  obj.vertexes = new double[obj.count_vert * 3 + 1];
+  obj.facets = new unint[obj.count_facets * 2 + 1] ;
   text.open(file_name, std::ios::in);
   if (text.is_open()) {  // считываем построчно
     while (std::getline(text, ch)) {
@@ -56,7 +56,7 @@ void Model::s21_read(std::string file_name, data_t *obj) {
               if (tmp == "v") {
                 continue;
               } else {
-              obj->vertexes[index_v] = std::stod(tmp);
+              obj.vertexes[index_v] = std::stod(tmp);
               ++index_v;
               }
             }
@@ -68,7 +68,7 @@ void Model::s21_read(std::string file_name, data_t *obj) {
   text.close();
 }
 
-Model::unint Model::s21_Fconnect(data_t *obj, std::string ch, unint index_f) {
+Model::unint Model::s21_Fconnect(data_t obj, std::string ch, unint index_f) {
   int closure_val{};  // для замыкания полигона
   int i_flag = 0;  // порядковый номер записанного числа
   for (unint i = 0; i < ch.length(); ++i) {
@@ -83,18 +83,18 @@ Model::unint Model::s21_Fconnect(data_t *obj, std::string ch, unint index_f) {
         ++j;
       }
       val =( std::stod(str)) - 1;
-      obj->facets[index_f] = val;
+      obj.facets[index_f] = val;
       if (i_flag == 1) {
         closure_val = val;
         ++index_f;
       }
       if (i_flag != 1) {
-        obj->facets[++index_f] = val;
+        obj.facets[++index_f] = val;
         ++index_f;
       }
     }
   }
-  obj->facets[index_f++] = closure_val;
+  obj.facets[index_f++] = closure_val;
   return (index_f);
 }
 
@@ -156,7 +156,7 @@ void Move::s21_move(double **vertex, double move, unint count_v, char direction)
   diff = move;
 }
 
-void Scale::s21_move(double **vertex, double scale, unint count_v) {
+void Scale::s21_move(double **vertex, double scale, unint count_v, char direction = 'y') {
   if (scale == 0.0) return;
   for (unint i = 0; i < count_v * 3; ++i) {
     (*vertex)[i] *= scale;

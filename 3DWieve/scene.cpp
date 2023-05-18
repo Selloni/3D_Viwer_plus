@@ -9,60 +9,18 @@ Scene::Scene(QWidget* parent)
                            QSettings::IniFormat);
 }
 
-data_t obj = {'\0'};
-double arr[] = {0, 0, 0, -1, 0, -1, 0, 1, 0, 1, 0, 0};  // масив вершин
-unsigned int mass[] = {1, 0, 1, 2, 1, 3, 2, 3, 2, 4, 3, 4};  // масив соединений
-
 void Scene::free_mem() {
-  if (obj.facets != NULL && obj.vertexes != NULL) {
-    free(obj.facets);
-    free(obj.vertexes);
-    obj.facets = 0;
-    obj.vertexes = 0;
-    obj.count_facets = 0;
-    obj.count_vert = 0;
-    qcount_facets = 0;
-    qcount_vert = 0;
-    qvertexes = 0;
-    qfacets = 0;
-  }
+    facad.free();
 }
 
-void Scene::read_file(char* path_file) {
-  if (obj.facets != NULL && obj.vertexes != NULL) {
-    free(obj.facets);
-    free(obj.vertexes);
-    obj.facets = 0;
-    obj.vertexes = 0;
-    obj.count_facets = 0;
-    obj.count_vert = 0;
-    qcount_facets = 0;
-    qcount_vert = 0;
-    qvertexes = 0;
-    qfacets = 0;
-  }
-  int err_flag = 1;
-  //    int len = strlen(path_file);
-  //    for (int i = 0; len > 1 ; --len) {
-  //        if (path_file[len] != '/') {
-  //            str[i] = path_file[len];
-  //            i++;
-  //        } else {
-  //            break;
-  //        }
-  //    }
-  err_flag = s21_count_v_f(path_file, &obj);
+void Scene::read_file(std::string path_file) {
+    free_mem();
+  int err_flag = facad.set_path(path_file);
   if (err_flag) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
-  } else {
-    s21_read(path_file, &obj);
-    qcount_facets = obj.count_facets;
-    qcount_vert = obj.count_vert;
-    qvertexes = obj.vertexes;
-    qfacets = obj.facets;
-  }
+ }
 }
 
 void Scene::initializeGL() {
@@ -76,15 +34,12 @@ void Scene::resizeGL(int w, int h) {
 
 void Scene::paintGL() {
   projection(proj);
-  //        obj.count_vert = 4;
-  //        obj.count_facets = 12;
   glClearColor(back_red / 255.0f, back_green / 255.0f, back_blue / 255.0f,
                back_alpha / 255.0f);  //  colo bakcground
-  if (obj.count_facets > 3) {
+  if (facad.get_count_facets() > 3) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
     glTranslatef(0, 0, -3);
     glRotatef(xRot, 1, 0, 0);  // для движения мышью
     glRotatef(yRot, 0, 1, 0);
@@ -95,18 +50,18 @@ void Scene::paintGL() {
   }
 }
 void Scene::draw() {
-  if (obj.count_facets > 3) {
-    glVertexPointer(3, GL_DOUBLE, 0, qvertexes);
+  if (facad.get_count_facets() > 3) {
+    glVertexPointer(3, GL_DOUBLE, 0, facad.get_arr_vertex());
     glEnableClientState(GL_VERTEX_ARRAY);
     veretex_stile(v_s);
     vertex_color(v_c);
     if (v_s != 0) {
       glPointSize(v_w);  // size point
-      glDrawArrays(GL_POINTS, 0, obj.count_vert);
+      glDrawArrays(GL_POINTS, 0, facad.get_count_vertex());
     }
     line_color(l_c);
     line_style(l_s);
-    glDrawElements(GL_LINES, (qcount_facets * 2), GL_UNSIGNED_INT, qfacets);
+    glDrawElements(GL_LINES, (facad.get_count_facets() * 2), GL_UNSIGNED_INT, facad.get_arr_facets());
     glLineWidth(l_w);  // size line
     glDisableClientState(GL_VERTEX_ARRAY);
   }
