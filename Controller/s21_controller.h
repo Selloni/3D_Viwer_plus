@@ -9,17 +9,17 @@ namespace s21 {
 class Controller {
   // protected:
  public:
-  s21::Model model_;
+  s21::Model model;
   s21::data_t obj;
-  s21::Facade fasade_;
+  s21::Facade fasade;
   Controller() {}
   ~Controller() {}
-  bool set_path_file(std::string str) { return model_.s21_count_v_f(str, obj); }
-  unint get_count_vertex() { return obj.count_vert; }
-  unint get_count_facets() { return obj.count_facets; }
-  double *get_arr_vertex() { return obj.vertexes; }
-  unint *get_arr_facets() { return obj.facets; }
-  void open(std::string str) { model_.s21_read(str, obj); }
+  bool SetPathFile(std::string str) { return model.s21CountVF(str, obj); }
+  unint GetCountVertex() { return obj.count_vert; }
+  unint GetCountFacets() { return obj.count_facets; }
+  double *GetArrVertex() { return obj.vertexes; }
+  unint *GetArrFacets() { return obj.facets; }
+  void Open(std::string str) { model.s21Read(str, obj); }
 };  // Controller
 
 }  // namespace s21

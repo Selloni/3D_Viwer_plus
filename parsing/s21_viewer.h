@@ -20,11 +20,11 @@ struct data_t {
 class Model {
  public:
   ////parser
-  bool s21_count_v_f(std::string file_name, data_t &obj);
-  void s21_read(std::string file_name, data_t &obj);
-  int s21_digit_supp(char ind);
-  unint s21_space_for_Fsupp(std::string ch);
-  unint s21_Fconnect(data_t &obj, std::string ch, unint index_f);
+  bool s21CountVF(std::string file_name, data_t &obj);
+  void s21Read(std::string file_name, data_t &obj);
+  int s21DigitSupp(char ind);
+  unint s21SpaceForFsupp(std::string ch);
+  unint s21Fconnect(data_t &obj, std::string ch, unint index_f);
 };
 }  // namespace s21
 

@@ -24,8 +24,8 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  MainWindow(QWidget *parent = nullptr);
-  ~MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
   float time;
   QVector<QImage> GIF;
@@ -34,7 +34,7 @@ class MainWindow : public QMainWindow {
   bool is_recording;
   double tmp = 1;
 
- private slots:
+ public slots:
 
   void on_pushButton_clicked();
 

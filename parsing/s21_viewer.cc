@@ -1,6 +1,6 @@
 #include "s21_viewer.h"
 
-bool s21::Model::s21_count_v_f(
+bool s21::Model::s21CountVF(
     std::string file_name,
     data_t &obj) {  // открыли и посчитали, сколько нам потребуется памяти
   std::ifstream text;
@@ -13,7 +13,7 @@ bool s21::Model::s21_count_v_f(
       if (ch[0] == 'v' && ch[1] == ' ') {  // vertex
         obj.count_vert++;
       } else if (ch[0] == 'f' && ch[1] == ' ') {  // facets
-        obj.count_facets += s21_space_for_Fsupp(ch);
+        obj.count_facets += s21SpaceForFsupp(ch);
       }
     }
     text.close();
@@ -26,7 +26,7 @@ bool s21::Model::s21_count_v_f(
   return result;
 }
 
-s21::unint s21::Model::s21_space_for_Fsupp(std::string ch) {
+s21::unint s21::Model::s21SpaceForFsupp(std::string ch) {
   int i = 2;
   unint space_count = 1;
   while (ch[i] != '\n' && ch[i] != EOF && ch[i] != '\0') {
@@ -40,7 +40,7 @@ s21::unint s21::Model::s21_space_for_Fsupp(std::string ch) {
 
 using namespace std;
 
-void s21::Model::s21_read(std::string file_name, data_t &obj) {
+void s21::Model::s21Read(std::string file_name, data_t &obj) {
   std::ifstream text;
   unint index_v = 0;
   unint index_f = 0;
@@ -62,24 +62,24 @@ void s21::Model::s21_read(std::string file_name, data_t &obj) {
           }
         }
       } else if (ch[0] == 'f' && ch[1] == ' ') {
-        index_f = s21_Fconnect(obj, ch, index_f);
+        index_f = s21Fconnect(obj, ch, index_f);
       }
     }
   }
   text.close();
 }
 
-s21::unint s21::Model::s21_Fconnect(data_t &obj, std::string ch,
+s21::unint s21::Model::s21Fconnect(data_t &obj, std::string ch,
                                     unint index_f) {
   int closure_val{};  // для замыкания полигона
   int i_flag = 0;  // порядковый номер записанного числа
   for (unint i = 0; i < ch.length(); ++i) {
     unint val = 0;  // для дублирования чисел
-    if (ch[i] == ' ' && s21_digit_supp(ch[i + 1])) {
+    if (ch[i] == ' ' && s21DigitSupp(ch[i + 1])) {
       ++i_flag;
       std::string str{};
       int j = 0;
-      while (s21_digit_supp(ch[++i])) {
+      while (s21DigitSupp(ch[++i])) {
         str.push_back(ch[i]);
         // ++i;
         ++j;
@@ -100,7 +100,7 @@ s21::unint s21::Model::s21_Fconnect(data_t &obj, std::string ch,
   return (index_f);
 }
 
-int s21::Model::s21_digit_supp(char ind) {
+int s21::Model::s21DigitSupp(char ind) {
   int result = 0;
   if (ind >= '0' && ind <= '9') {
     result = 1;
