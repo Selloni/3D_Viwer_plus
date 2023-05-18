@@ -1,9 +1,19 @@
-CC+FLAGS = gcc -std=c11 -Wall -Wextra -Werror
-GCOVFLAGS = -L. --coverage
-CHECK_FLAGS = -lcheck -lm -lpthread
+G = g++ -std=c++17
+GCC = $(G) -Wall -Wextra -Werror -Wuninitialized
+TEST_LIBS = -lgtest -lgmock -pthread
+FLAG_LEAKS = -lgtest -lstdc++ -lpthread -std=c++17 -g -lcheck
 
-all: install tests
 
+
+ifeq (${OS}, Linux)
+	CHECK_FLAGS += -lsubunit -lrt
+endif
+
+b:
+	$(G) parsing/s21_viewer.cc parsing/main.cc Facade/s21_facade.cc -g && ./a.out
+
+
+all: install test
 install: 
 	rm -rf build
 	mkdir build
@@ -24,28 +34,35 @@ dist:
 	mkdir Archive_3DViewer
 	tar -cf Archive_3DViewer/3DViewer.tar build
 
-tests:
-	parsing/s21_viewer.c parsing/s21_test.c -lcheck -o test.out
+test:
+	$(G) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc -o test.out
+# ./test.out --gtest_repeat=3 --gtest_break_on_failure
 	./test.out
 
 check:
 	clang-format -style=Google -dump-config > .clang-format
-	clang-format -i parsing/*.c 				\
+	clang-format -i parsing/*.cc				\
 					parsing/*.h 				\
-					3DWieve/*.cpp 			\
-					3DWieve/*.h 			\
+					3DWieve/*.cpp 				\
+					3DWieve/*.h 				\
 					GIFCreation/gifImage/*.cpp  \
 					GIFCreation/gifImage/*.h 	\
 					GIFCreation/gifLib/*.c 		\
-					GIFCreation/gifLib/*.h
-	clang-format -n parsing/*.c 				\
+					GIFCreation/gifLib/*.h		\
+					Controller/*.h 				\
+					Facade/*.h 					\
+					Facade/*.cc
+	clang-format -n parsing/*.cc 				\
 					parsing/*.h 				\
-					3DWieve/*.cpp 			\
-					3DWieve/*.h 			\
+					3DWieve/*.cpp 				\
+					3DWieve/*.h 				\
 					GIFCreation/gifImage/*.cpp  \
 					GIFCreation/gifImage/*.h 	\
 					GIFCreation/gifLib/*.c 		\
-					GIFCreation/gifLib/*.h
+					GIFCreation/gifLib/*.h 		\
+					Controller/*.h 				\
+					Facade/*.h 					\
+					Facade/*.cc
 	rm .clang-format
 
 clean:
@@ -55,11 +72,6 @@ clean:
 	rm -rf a.out
 	rm -rf test.out
 	rm -rf Archive_3DViewer
-
-
-# install lcov:
-# 	curl -fsSL https://rawgit.com/kube/42homebrew/master/install.sh | zsh
-# 	brew install lcov
 
 rebuild: clean uninstall all
 

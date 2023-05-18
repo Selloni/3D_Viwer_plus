@@ -90,7 +90,7 @@
     </property>
     <item>
      <property name="text">
-      <string>Write</string>
+      <string>White</string>
      </property>
     </item>
     <item>
@@ -242,7 +242,7 @@
     </property>
     <item>
      <property name="text">
-      <string>Write</string>
+      <string>White</string>
      </property>
     </item>
     <item>
@@ -534,6 +534,25 @@
     </property>
     <property name="text">
      <string>SCALE</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="countdownLabel">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>690</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">text-align: center;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

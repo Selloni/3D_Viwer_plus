@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
   record_time = new QTimer(this);
   is_recording = false;
   connect(record_time, &QTimer::timeout, this, &MainWindow::recording);
+  connect(record_time, &QTimer::timeout, this, &MainWindow::updateCountdown);
 }
 
 MainWindow::~MainWindow() {
@@ -21,8 +22,7 @@ MainWindow::~MainWindow() {
 void MainWindow::on_pushButton_clicked() {
   qpath_file =
       QFileDialog::getOpenFileName(0, "Open File .obj", "/Users/", "*.obj");
-  QByteArray ba = qpath_file.toLocal8Bit();  // перевод из Qstring in *str
-  char *path_file = ba.data();
+  std::string path_file = qpath_file.toStdString();
   ui->sceneWidget->read_file(path_file);
 }
 
@@ -82,51 +82,48 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'x', arg1,
-             ui->sceneWidget->qcount_vert);
+ ui->sceneWidget->controller_.fasade_.transform(rotate_x, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'y', arg1,
-             ui->sceneWidget->qcount_vert);
+    ui->sceneWidget->controller_.fasade_.transform(rotate_y, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
-  s21_rotate(&ui->sceneWidget->qvertexes, 'z', arg1,
-             ui->sceneWidget->qcount_vert);
+    ui->sceneWidget->controller_.fasade_.transform(rotate_z, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
-  s21_moveX(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+    ui->sceneWidget->controller_.fasade_.transform(move_x, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
-  s21_moveY(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+     ui->sceneWidget->controller_.fasade_.transform(move_y, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
-  s21_moveZ(&ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+     ui->sceneWidget->controller_.fasade_.transform(move_z, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
-  s21_scale(&ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
+    ui->sceneWidget->controller_.fasade_.transform(scale_, &ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_actioninfo_triggered() {
-  QString a = QString::number(ui->sceneWidget->qcount_vert);
-  QString b = QString::number(ui->sceneWidget->qcount_facets);
+  QString a = QString::number(scene.facad.get_count_facets());
+  QString b = QString::number(scene.facad.get_count_vertex());
   QString info = "Name: " + qpath_file + '\n' + "Vertex: " + a + '\n' +
-                 "Facets: " + b + '\n' + "Authors: Yakov other peers" + '\n' +
+                 "Facets: " + b + '\n' + "Authors: Sabina and Yakov" + '\n' +
                  '\n' + "❤ и ты симпатяшка ❤";
 
   QMessageBox::information(this, tr("Info"), info);
@@ -179,6 +176,27 @@ void MainWindow::recording() {
     saveGIF();
     record_time->stop();
   }
+}
+
+void MainWindow::updateCountdown() {
+    countdown++;
+    if (countdown == 0) {
+        ui->countdownLabel->setText("Запись\n5 секунд");
+    } else if (countdown == 10) {
+        ui->countdownLabel->setText("Запись\n4 секунды");
+    } else if (countdown == 20) {
+        ui->countdownLabel->setText("Запись\n3 секунды");
+    } else if (countdown == 30) {
+        ui->countdownLabel->setText("Запись\n2 секунды");
+    } else if (countdown == 40) {
+        ui->countdownLabel->setText("Запись\n1 секунда");
+    } else if (countdown == 50) {
+        ui->countdownLabel->setText("Запись\n0 секунд");
+    }
+    if (countdown == 51) {
+        ui->countdownLabel->clear();
+        countdown = 0;
+    }
 }
 
 void MainWindow::saveGIF() {
