@@ -10,17 +10,46 @@ Scene::Scene(QWidget* parent)
 }
 
 void Scene::free_mem() {
-    facad.free();
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
+    qcount_facets = 0;
+    qcount_vert = 0;
+    qvertexes = 0;
+    qfacets = 0;
+  }
 }
 
-void Scene::read_file(std::string path_file) {
-    free_mem();
-  int err_flag = facad.set_path(path_file);
+void Scene::read_file(char* path_file) {
+  if (controller_.obj.facets != NULL && controller_.obj.vertexes != NULL) {
+    free(controller_.obj.facets);
+    free(controller_.obj.vertexes);
+    controller_.obj.facets = 0;
+    controller_.obj.vertexes = 0;
+    controller_.obj.count_facets = 0;
+    controller_.obj.count_vert = 0;
+    qcount_facets = 0;
+    qcount_vert = 0;
+    qvertexes = 0;
+    qfacets = 0;
+  }
+  int err_flag = 1;
+  err_flag = controller_.set_path_file(path_file);
   if (err_flag) {
     QMessageBox msgBox;
     msgBox.setText("The file was not considered");
     msgBox.exec();
- }
+  } else {
+    controller_.open(path_file);
+    qcount_facets = controller_.obj.count_facets;
+    qcount_vert = controller_.obj.count_vert;
+    qvertexes = controller_.obj.vertexes;
+    qfacets = controller_.obj.facets;
+  }
 }
 
 void Scene::initializeGL() {
@@ -36,7 +65,7 @@ void Scene::paintGL() {
   projection(proj);
   glClearColor(back_red / 255.0f, back_green / 255.0f, back_blue / 255.0f,
                back_alpha / 255.0f);  //  colo bakcground
-  if (facad.get_count_facets() > 3) {
+  if (controller_.obj.count_facets > 3) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -50,14 +79,14 @@ void Scene::paintGL() {
   }
 }
 void Scene::draw() {
-  if (facad.get_count_facets() > 3) {
-    glVertexPointer(3, GL_DOUBLE, 0, facad.get_arr_vertex());
+  if (controller_.obj.count_facets > 3) {
+    glVertexPointer(3, GL_DOUBLE, 0, qvertexes);
     glEnableClientState(GL_VERTEX_ARRAY);
     veretex_stile(v_s);
     vertex_color(v_c);
     if (v_s != 0) {
       glPointSize(v_w);  // size point
-      glDrawArrays(GL_POINTS, 0, facad.get_count_vertex());
+      glDrawArrays(GL_POINTS, 0, controller_.obj.count_vert);
     }
     line_color(l_c);
     line_style(l_s);
@@ -158,18 +187,6 @@ void Scene::mouseMoveEvent(QMouseEvent* mouse) {
   start_y = mouse->pos().y();
   update();
 }
-
-// void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-//{
-//   if(fov >= 1.0f && fov <= 45.0f)
-//   	fov -= yoffset;
-//   if(fov <= 1.0f)
-//   	fov = 1.0f;
-//   if(fov >= 45.0f)
-//   	fov = 45.0f;
-//   projection = glm::perspective(fov, (GLfloat)WIDTH/(GLfloat)HEIGHT, 0.1f,
-//   100.0f); glfwSetScrollCallback(window, scroll_callback);
-// }
 
 void Scene::saveSetting() {
   settings->setValue("l_c", l_c);

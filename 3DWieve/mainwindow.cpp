@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
   record_time = new QTimer(this);
   is_recording = false;
   connect(record_time, &QTimer::timeout, this, &MainWindow::recording);
+  connect(record_time, &QTimer::timeout, this, &MainWindow::updateCountdown);
 }
 
 MainWindow::~MainWindow() {
@@ -81,47 +82,75 @@ void MainWindow::on_background_clicked() {
 }
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Rotate rotate;
     scene.facad.fmove(rotate, arg1,'x');
+=======
+ ui->sceneWidget->controller_.fasade_.transform(rotate_x, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Rotate rotate;
     scene.facad.fmove(rotate, arg1, 'y');
+=======
+    ui->sceneWidget->controller_.fasade_.transform(rotate_y, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Rotate rotate;
     scene.facad.fmove(rotate, arg1, 'z');
+=======
+    ui->sceneWidget->controller_.fasade_.transform(rotate_z, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Move move;
     scene.facad.fmove(move, arg1, 'x');
+=======
+    ui->sceneWidget->controller_.fasade_.transform(move_x, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Move move;
     scene.facad.fmove(move, arg1, 'y');
+=======
+     ui->sceneWidget->controller_.fasade_.transform(move_y, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
+<<<<<<< HEAD
     s21::Move move;
     scene.facad.fmove(move, arg1, 'z');
+=======
+     ui->sceneWidget->controller_.fasade_.transform(move_z, &ui->sceneWidget->qvertexes, arg1, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_setting_scale_valueChanged(double arg1) { tmp = arg1; }
 
 void MainWindow::on_but_scale_clicked() {
+<<<<<<< HEAD
     s21::Scale scale;
     scene.facad.fmove(scale, tmp, 'o');
+=======
+    ui->sceneWidget->controller_.fasade_.transform(scale_, &ui->sceneWidget->qvertexes, tmp, ui->sceneWidget->qcount_vert);
+>>>>>>> origin/evetteis
   ui->sceneWidget->update();
 }
 
@@ -182,6 +211,27 @@ void MainWindow::recording() {
     saveGIF();
     record_time->stop();
   }
+}
+
+void MainWindow::updateCountdown() {
+    countdown++;
+    if (countdown == 0) {
+        ui->countdownLabel->setText("Запись\n5 секунд");
+    } else if (countdown == 10) {
+        ui->countdownLabel->setText("Запись\n4 секунды");
+    } else if (countdown == 20) {
+        ui->countdownLabel->setText("Запись\n3 секунды");
+    } else if (countdown == 30) {
+        ui->countdownLabel->setText("Запись\n2 секунды");
+    } else if (countdown == 40) {
+        ui->countdownLabel->setText("Запись\n1 секунда");
+    } else if (countdown == 50) {
+        ui->countdownLabel->setText("Запись\n0 секунд");
+    }
+    if (countdown == 51) {
+        ui->countdownLabel->clear();
+        countdown = 0;
+    }
 }
 
 void MainWindow::saveGIF() {

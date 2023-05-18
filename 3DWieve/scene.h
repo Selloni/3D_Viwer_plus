@@ -9,7 +9,11 @@
 
 #define GL_SILENCE_DEPRECATION
 
+
+#include "../parsing/s21_viewer.h"
 #include "../Facade/s21_facade.h"
+#include "../Controller/s21_controller.h"
+
 
 
 class Scene : public QOpenGLWidget {
@@ -33,7 +37,12 @@ class Scene : public QOpenGLWidget {
   void draw();
 
  public:
+<<<<<<< HEAD
   s21::Facade facad ;
+=======
+//  s21::Model model_;
+  s21::Controller controller_;
+>>>>>>> origin/evetteis
   void saveSetting();
   void loadSetting();
   void free_mem();
