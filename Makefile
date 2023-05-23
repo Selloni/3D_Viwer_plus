@@ -25,33 +25,33 @@ dist:
 	tar -cf Archive_3DViewer/3DViewer.tar build
 
 test:
-	$(GCC) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Facade/s21_facade.cc  -o test.out
+	$(GCC) $(TEST_LIBS) parsing/s21_viewer.cc parsing/s21_test.cc Transform/s21_transform.cc  -o test.out
 	./test.out
 
 check:
 	clang-format -style=Google -dump-config > .clang-format
 	clang-format -i parsing/*.cc				\
 					parsing/*.h 				\
-					3DWieve/*.cpp 				\
+					3DWieve/*.cc 				\
 					3DWieve/*.h 				\
 					GIFCreation/gifImage/*.cpp  \
 					GIFCreation/gifImage/*.h 	\
 					GIFCreation/gifLib/*.c 		\
 					GIFCreation/gifLib/*.h		\
 					Controller/*.h 				\
-					Facade/*.h 					\
-					Facade/*.cc
+					Transform/*.h 					\
+					Transform/*.cc					
 	clang-format -n parsing/*.cc 				\
 					parsing/*.h 				\
-					3DWieve/*.cpp 				\
+					3DWieve/*.cc				\
 					3DWieve/*.h 				\
 					GIFCreation/gifImage/*.cpp  \
 					GIFCreation/gifImage/*.h 	\
 					GIFCreation/gifLib/*.c 		\
 					GIFCreation/gifLib/*.h 		\
 					Controller/*.h 				\
-					Facade/*.h 					\
-					Facade/*.cc
+					Transform/*.h 					\
+					Transform/*.cc
 	rm .clang-format
 
 clean:

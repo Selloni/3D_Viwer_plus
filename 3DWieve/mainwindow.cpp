@@ -84,41 +84,41 @@ void MainWindow::on_background_clicked() {
 
 void MainWindow::on_rotateX_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      rotate_x, &ui->sceneWidget->qVertexes, arg1,
+      rotate_x_, &ui->sceneWidget->qVertexes, arg1,
       ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotetaY_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      rotate_y, &ui->sceneWidget->qVertexes, arg1,
+      rotate_y_, &ui->sceneWidget->qVertexes, arg1,
       ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_rotateZ_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      rotate_z, &ui->sceneWidget->qVertexes, arg1,
+      rotate_z_, &ui->sceneWidget->qVertexes, arg1,
       ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_6_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      move_x, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
+      move_x_, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
 }
 
 void MainWindow::on_doubleSpinBox_5_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      move_y, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
+      move_y_, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
   ;
 }
 
 void MainWindow::on_doubleSpinBox_4_valueChanged(double arg1) {
   ui->sceneWidget->controller.fasade.transform(
-      move_z, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
+      move_z_, &ui->sceneWidget->qVertexes, arg1, ui->sceneWidget->qcountVert);
   ui->sceneWidget->update();
 }
 
@@ -190,23 +190,23 @@ void MainWindow::recording() {
 }
 
 void MainWindow::updateCountdown() {
-  countdown++;
-  if (countdown == 0) {
+  countdown_++;
+  if (countdown_ == 0) {
     ui->countdownLabel->setText("Запись\n5 секунд");
-  } else if (countdown == 10) {
+  } else if (countdown_ == 10) {
     ui->countdownLabel->setText("Запись\n4 секунды");
-  } else if (countdown == 20) {
+  } else if (countdown_ == 20) {
     ui->countdownLabel->setText("Запись\n3 секунды");
-  } else if (countdown == 30) {
+  } else if (countdown_ == 30) {
     ui->countdownLabel->setText("Запись\n2 секунды");
-  } else if (countdown == 40) {
+  } else if (countdown_ == 40) {
     ui->countdownLabel->setText("Запись\n1 секунда");
-  } else if (countdown == 50) {
+  } else if (countdown_ == 50) {
     ui->countdownLabel->setText("Запись\n0 секунд");
   }
-  if (countdown == 51) {
+  if (countdown_ == 51) {
     ui->countdownLabel->clear();
-    countdown = 0;
+    countdown_ = 0;
   }
 }
 

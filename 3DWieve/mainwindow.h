@@ -9,8 +9,8 @@
 #include <QTimer>
 #include <QUrl>
 
-#include "../Facade/s21_facade.h"
 #include "../GIFCreation/gifImage/qgifimage.h"
+#include "../Transform//s21_transform.h"
 #include "../parsing/s21_viewer.h"
 #include "scene.h"
 
@@ -24,8 +24,8 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-    explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+  explicit MainWindow(QWidget *parent = nullptr);
+  ~MainWindow();
 
   float time;
   QVector<QImage> GIF;
@@ -99,20 +99,13 @@ class MainWindow : public QMainWindow {
  private:
   Ui::MainWindow *ui;
   Scene scene;
-  s21::MoveX move_x = s21::MoveX::GetInstance();
-  s21::MoveY move_y = s21::MoveY::GetInstance();
-  s21::MoveZ move_z = s21::MoveZ::GetInstance();
+  s21::MoveX move_x_ = s21::MoveX::GetInstance();
+  s21::MoveY move_y_ = s21::MoveY::GetInstance();
+  s21::MoveZ move_z_ = s21::MoveZ::GetInstance();
   s21::Scale scale_ = s21::Scale::GetInstance();
-  s21::RotateX rotate_x = s21::RotateX::GetInstance();
-  s21::RotateY rotate_y = s21::RotateY::GetInstance();
-  s21::RotateZ rotate_z = s21::RotateZ::GetInstance();
-  //  s21::MoveX move_x;
-  //  s21::MoveY move_y;
-  //  s21::MoveZ move_z;
-  //  s21::Scale scale_;
-  //  s21::RotateX rotate_x;
-  //  s21::RotateY rotate_y;
-  //  s21::RotateZ rotate_z;
-  int countdown = 0;
+  s21::RotateX rotate_x_ = s21::RotateX::GetInstance();
+  s21::RotateY rotate_y_ = s21::RotateY::GetInstance();
+  s21::RotateZ rotate_z_ = s21::RotateZ::GetInstance();
+  int countdown_ = 0;
 };
 #endif  // MAINWINDOW_H

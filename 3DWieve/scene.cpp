@@ -10,7 +10,7 @@ Scene::Scene(QWidget* parent)
 }
 
 void Scene::freeMem() {
-  if (controller.obj.facets != NULL && controller.obj.vertexes != NULL) {
+  if (controller.obj.facets && controller.obj.vertexes) {
     delete[] controller.obj.facets;
     delete[] controller.obj.vertexes;
     controller.obj.facets = 0;
@@ -24,7 +24,7 @@ void Scene::freeMem() {
   }
 }
 
-void Scene::readFile(char* path_file) {
+void Scene::readFile(std::string path_file) {
   freeMem();
   int err_flag = 1;
   err_flag = controller.SetPathFile(path_file);
@@ -60,9 +60,9 @@ void Scene::paintGL() {
     glLoadIdentity();
 
     glTranslatef(0, 0, -3);
-    glRotatef(xRot, 1, 0, 0);  // для движения мышью
-    glRotatef(yRot, 0, 1, 0);
-    glRotatef(zRot, 0, 0, 1);
+    glRotatef(xRot_, 1, 0, 0);  // для движения мышью
+    glRotatef(yRot_, 0, 1, 0);
+    glRotatef(zRot_, 0, 0, 1);
     draw();
     //        update();
     //        saveSetting();
@@ -148,33 +148,33 @@ void Scene::projection(int proj) {
 void Scene::mousePressEvent(QMouseEvent* mouse) {
   switch (mouse->button()) {
     case Qt::LeftButton:
-      moving = true;
-      dragging = false;
+      moving_ = true;
+      dragging_ = false;
       break;
     case Qt::MiddleButton:
-      dragging = true;
-      moving = false;
+      dragging_ = true;
+      moving_ = false;
       break;
     default:
-      moving = false;
-      dragging = false;
+      moving_ = false;
+      dragging_ = false;
       break;
   }
-  startX = mouse->pos().x();
-  startY = mouse->pos().y();
+  startX_ = mouse->pos().x();
+  startY_ = mouse->pos().y();
 }
 
 void Scene::mouseMoveEvent(QMouseEvent* mouse) {
-  if (moving) {
-    yRot = yRot + (mouse->pos().x() - startX);
-    xRot = xRot + (mouse->pos().y() - startY);
+  if (moving_) {
+    yRot_ = yRot_ + (mouse->pos().x() - startX_);
+    xRot_ = xRot_ + (mouse->pos().y() - startY_);
   }
-  if (dragging) {
-    xTrans = xTrans + (mouse->pos().x() - startX) / 4.f;
-    yTrans = yTrans - (mouse->pos().y() - startY) / 4.f;
+  if (dragging_) {
+    xTrans_ = xTrans_ + (mouse->pos().x() - startX_) / 4.f;
+    yTrans_ = yTrans_ - (mouse->pos().y() - startY_) / 4.f;
   }
-  startX = mouse->pos().x();
-  startY = mouse->pos().y();
+  startX_ = mouse->pos().x();
+  startY_ = mouse->pos().y();
   update();
 }
 

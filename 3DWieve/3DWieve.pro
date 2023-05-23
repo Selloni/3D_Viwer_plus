@@ -17,11 +17,11 @@ SOURCES += \
     ../GIFCreation/gifLib/gif_hash.c \
     ../GIFCreation/gifLib/gifalloc.c \
     ../GIFCreation/gifLib/quantize.c \
+    ../Transform/s21_transform.cc \
     ../parsing/s21_viewer.cc \
-    ../Facade/s21_facade.cc \
-    main.cpp \
-    mainwindow.cpp \
-    scene.cpp \
+    main.cc \
+    mainwindow.cc \
+    scene.cc \
 
 HEADERS += \
     ../GIFCreation/gifImage/qgifglobal.h \
@@ -30,9 +30,9 @@ HEADERS += \
     ../GIFCreation/gifLib/gif_hash.h \
     ../GIFCreation/gifLib/gif_lib.h \
     ../GIFCreation/gifLib/gif_lib_private.h \
+    ../Transform/s21_transform.h \
     ../parsing/s21_viewer.h \
     ../Controller/s21_controller.h \
-    ../Facade/s21_facade.h \
     mainwindow.h \
     scene.h
 
